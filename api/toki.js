@@ -1,73 +1,83 @@
-const familyQuestionPattern = /\b(?:family|father|dad|papa|mother|mom|mum|sister|sibling|brother|parents?|single|married|marriage|marital|wife|spouse|husband|girlfriend|boyfriend|relationship)\b|(?:পরিবার|পারিবারিক|বাবা|পিতা|আব্বা|আব্বু|মা|আম্মু|বোন|ভাই|বিয়ে|বিয়ে|বিবাহ|বউ|স্ত্রী|স্বামী|প্রেমিকা|প্রেমিক)|\b(?:poribar|baba|babar|abbu|abbar|abba|ma|maa|ammu|bon|boner|boro|bhai|biye|biyer|bou|bow|strii)\b/iu;
-const nameQuestionPattern = /\b(?:sister|sibling|parents?|father|dad|papa|mother|mom|mum)\b.*\b(?:name|called|identity)\b|\b(?:name|called|identity)\b.*\b(?:sister|sibling|parents?|father|dad|papa|mother|mom|mum)\b|\bwho\s+is\s+(?:his|sadman's|your)?\s*(?:sister|sibling|parents?|father|dad|papa|mother|mom|mum)\b|(?:বোন|বাবা|মা).{0,25}(?:নাম|কে)/iu;
+const familyNamePattern = /\b(?:sister|sibling|parents?|father|dad|papa|mother|mom|mum)\b.*\b(?:name|called|identity)\b|\b(?:name|called|identity)\b.*\b(?:sister|sibling|parents?|father|dad|papa|mother|mom|mum)\b|\bwho\s+is\s+(?:his|sadman's|your)?\s*(?:sister|sibling|parents?|father|dad|papa|mother|mom|mum)\b|(?:বোন|বাবা|মা).{0,25}(?:নাম|কে)/iu;
 const sisterMaritalPattern = /\b(?:(?:is|was)\s+(?:his|sadman's|your)?\s*(?:older|elder|big)?\s*sisters?\s+married|(?:sisters?|siblings?)\b.*\b(?:married|marriage|marital status)\b|\b(?:married|marriage|marital status)\b.*\b(?:sisters?|siblings?)\b)\b|(?:বোন|বড় বোন|বড় বোন).{0,35}(?:বিয়ে|বিয়ে|বিবাহ)|(?:bon|boner|boro bon).{0,35}(?:biye|biyer|bibah|married)/iu;
 const parentsWorkPattern = /\b(?:what\s+do\s+(?:his|sadman's|your)?\s*parents\s+do|parents?(?:'s?)?\s+(?:jobs?|occupations?|professions?|work)|(?:jobs?|occupations?|professions?)\s+of\s+(?:his|sadman's|your)?\s*parents)\b|(?:মা.?বাবা|পিতা.?মাতা).{0,35}(?:কি|কী|করেন|পেশা|কাজ)/iu;
+const parentPairPattern = /\b(?:father|dad|papa)\b.{0,35}\b(?:mother|mom|mum)\b|\b(?:mother|mom|mum)\b.{0,35}\b(?:father|dad|papa)\b|(?:বাবা|পিতা|আব্বা|আব্বু).{0,35}(?:মা|আম্মু)|(?:মা|আম্মু).{0,35}(?:বাবা|পিতা|আব্বা|আব্বু)|(?:baba|babar|abbu|abbar|abba).{0,35}(?:ma|maa|ammu|ammar)|(?:ma|maa|ammu|ammar).{0,35}(?:baba|babar|abbu|abbar|abba)/iu;
+const combinedParentsWorkPattern = new RegExp(`(?:${parentsWorkPattern.source})|(?:${parentPairPattern.source})`, 'iu');
 const fatherWorkPattern = /\bwhat\s+(?:does|is)\s+(?:his|sadman's|your)?\s*(?:father|dad|papa)\s+(?:do|job|occupation|profession)\b|\b(?:father|dad|papa)(?:'s)?\b.{0,35}\b(?:job|occupation|profession|work)\b|\b(?:is|does)\s+(?:his|sadman's|your)?\s*(?:father|dad|papa)\s+(?:a\s+)?[\p{L}-]+(?:\s+[\p{L}-]+)?\b|(?:বাবা|পিতা|আব্বা|আব্বু|বাবার).{0,35}(?:কি|কী|করেন|পেশা)|(?:baba|babar|abbu|abbar|abba).{0,35}(?:ki|kore|koren|pesha)\b/iu;
 const motherWorkPattern = /\bwhat\s+(?:does|is)\s+(?:his|sadman's|your)?\s*(?:mother|mom|mum)\s+(?:do|job|occupation|profession)\b|\b(?:mother|mom|mum)(?:'s)?\b.{0,35}\b(?:job|occupation|profession|work)\b|\b(?:is|does)\s+(?:his|sadman's|your)?\s*(?:mother|mom|mum)\s+(?:a\s+)?[\p{L}-]+(?:\s+[\p{L}-]+)?\b|(?:মা|মায়ের|মায়ের|আম্মু|আম্মুর).{0,35}(?:কি|কী|করেন|পেশা)|(?:ma|maa|ammu|ammar|mar).{0,35}(?:ki|kore|koren|pesha)\b/iu;
 const sisterCountPattern = /\b(?:(?:does|do)\s+(?:he|sadman)\s+have\s+(?:an?\s+)?(?:older|elder|big\s+)?sisters?|how\s+many\s+sisters?|(?:has|have)\s+(?:an?\s+)?(?:older|elder|big\s+)?sister|(?:any|number of)\s+sisters?|siblings)\b|(?:বড়|বড়)\s*বোন.{0,25}(?:আছে|কয়জন|কতজন)|বোন.{0,25}(?:আছে|কয়জন|কতজন)|(?:amar|tar|sadmaner).{0,25}(?:bon|boner).{0,25}(?:ache|ase|koyjon)/iu;
 const broadFamilyPattern = /\b(?:family|family background|family members|family details)\b|পরিবার|পারিবারিক|poribar/iu;
-const parentPairPattern = /\b(?:father|dad|papa)\b.{0,35}\b(?:mother|mom|mum)\b|\b(?:mother|mom|mum)\b.{0,35}\b(?:father|dad|papa)\b|(?:বাবা|পিতা|আব্বা|আব্বু).{0,35}(?:মা|আম্মু)|(?:মা|আম্মু).{0,35}(?:বাবা|পিতা|আব্বা|আব্বু)|(?:baba|babar|abbu|abbar|abba).{0,35}(?:ma|maa|ammu|ammar)|(?:ma|maa|ammu|ammar).{0,35}(?:baba|babar|abbu|abbar|abba)/iu;
+const familyUnknownPattern = /\b(?:father|dad|papa|mother|mom|mum|sister|sibling|brother|parents?)\b|(?:বাবা|পিতা|আব্বা|আব্বু|মা|আম্মু|বোন|ভাই)|\b(?:baba|babar|abbu|abbar|abba|ma|maa|ammu|bon|boner|bhai|poribar)\b/iu;
+const notListedPattern = /\b(?:age|old|birthday|birth date|salary|religion|single|married|marriage|marital status|favorite|favourite|wife|spouse|husband|girlfriend|boyfriend|relationship)\b|বয়স|বয়স|জন্মদিন|জন্মতারিখ|বিয়ে|বিয়ে|বিবাহ|ধর্ম|প্রিয়|প্রিয়|সিঙ্গেল|অবিবাহিত|বউ|স্ত্রী|স্বামী|প্রেমিকা|প্রেমিক/iu;
+const faqRules = [
+  { id: 'familyName', pattern: familyNamePattern },
+  { id: 'familySisterMarital', pattern: sisterMaritalPattern },
+  { id: 'parentsWork', pattern: combinedParentsWorkPattern },
+  { id: 'fatherWork', pattern: fatherWorkPattern },
+  { id: 'motherWork', pattern: motherWorkPattern },
+  { id: 'sisterCount', pattern: sisterCountPattern },
+  { id: 'familyBroad', pattern: broadFamilyPattern },
+  { id: 'familyUnknown', pattern: familyUnknownPattern },
+  { id: 'notListed', pattern: notListedPattern },
+  { id: 'location', pattern: /\b(?:location|live|lives|from|hometown|kothay)\b|কোথায়|কোথায়|থাকে|ঠিকানা/iu },
+  { id: 'experience', pattern: /\b(?:experience|years? of experience|oviggota)\b|অভিজ্ঞতা|বছর/iu },
+  { id: 'education', pattern: /\b(?:education|stud(?:y|ies)|university|degree|batch|class rep(?:resentative)?)\b|পড়াশোনা|পড়াশোনা|শিক্ষা|বিশ্ববিদ্যালয়|বিশ্ববিদ্যালয়|ব্যাচ|সিআর|porashona|shikkha|bishwobidyaloy/iu },
+  { id: 'skills', pattern: /\b(?:skills?|tech stack|technologies|technology|expertise|programming languages?|linux|cyber\s?security|command line|terminal)\b|স্কিল|দক্ষতা|টেকনোলজি|প্রযুক্তি|সাইবার সিকিউরিটি|লিনাক্স|dokkota|projukti/iu },
+  { id: 'projects', pattern: /\b(?:projects?|work samples?|jam|meal\s?master(?:\s?pro)?|meal\s?hishab|job application tracker|jobtracker)\b|প্রজেক্ট|প্রকল্প|prokolpo/iu },
+  { id: 'certificates', pattern: /\b(?:certificates?|certifications?|cs301|computer architecture|saylor university|intellipaat)\b|সার্টিফিকেট|সনদ|sonod/iu },
+  { id: 'cv', pattern: /\b(?:cv|resume|résumé)\b|সিভি/iu },
+  { id: 'contact', pattern: /\b(?:contact|email|e-mail|phone|reach(?: out)?|jogajog|numbar)\b|যোগাযোগ|ইমেইল|ইমেল|ফোন|নম্বর/iu },
+  { id: 'social', pattern: /\b(?:github|git hub|linkedin|social links?)\b|গিটহাব|লিংকডইন/iu },
+  { id: 'profile', pattern: /\b(?:profile|about|who is|who's|what does (?:sadman|he) do|full name|name|student|developer|job|occupation|profession|role)\b|পরিচয়|পরিচয়|নাম|কে|porichoy|nam|ke/iu },
+  { id: 'portfolio', pattern: /\b(?:portfolio|website|site|links?|urls?)\b|পোর্টফোলিও|ওয়েবসাইট|ওয়েবসাইট|লিংক/iu }
+];
+const requiredResponseIds = [
+  ...faqRules.map(({ id }) => id),
+  'sisterCountAndMarital',
+  'fallback'
+];
 
-function isBangla(query) {
-  return /[\u0980-\u09FF]/u.test(query)
-    || /\b(?:amar|apnar|tomar|tar|ke|kemon|kothay|ki|bolo|bolun|porashona|jogajog|biye|biyer|bou|bow|strii|baba|babar|abbu|abbar|abba|ma|maa|ammu|bon|boner|boro|poribar|bebsha|bebosha|byabsha|byabosha|pesha|koren|kore|ache|ase|koyjon|grihini)\b/iu.test(query);
+function isValidResponse(response) {
+  return response
+    && typeof response.bn === 'string'
+    && typeof response.en === 'string'
+    && Array.isArray(response.links)
+    && response.links.every((link) => typeof link === 'string');
 }
 
-function getFact(name, language) {
-  const value = process.env[`TOKI_FAMILY_${name}_${language}`];
-  return typeof value === 'string' && value.trim() ? value.trim() : null;
-}
+function loadResponses() {
+  const rawResponses = process.env.TOKI_FAQ_RESPONSES;
+  if (!rawResponses) return null;
 
-function answerFor(query) {
-  const bangla = isBangla(query);
-  const language = bangla ? 'BN' : 'EN';
-  const facts = [];
-
-  if (nameQuestionPattern.test(query)) {
-    return {
-      reply: bangla
-        ? 'পরিবারের সদস্যদের নাম সম্পর্কে আমার কাছে তথ্য নেই।'
-        : "I don't have the family members' names."
-    };
+  let config;
+  try {
+    config = JSON.parse(rawResponses);
+  } catch (error) {
+    console.error('Toki FAQ response configuration is not valid JSON:', error);
+    return null;
   }
 
-  const parentsWork = parentsWorkPattern.test(query) || parentPairPattern.test(query);
-  const asksFather = parentsWork || fatherWorkPattern.test(query);
-  const asksMother = parentsWork || motherWorkPattern.test(query);
+  if (!config || typeof config !== 'object' || typeof config.banglaPattern !== 'string' || !config.answers) {
+    return null;
+  }
+
+  try {
+    new RegExp(config.banglaPattern, 'iu');
+  } catch (error) {
+    console.error('Toki FAQ language pattern is invalid:', error);
+    return null;
+  }
+
+  if (!requiredResponseIds.every((id) => isValidResponse(config.answers[id]))) return null;
+  return config;
+}
+
+function getResponseId(query) {
   const asksSisterCount = sisterCountPattern.test(query);
-  const asksSisterMaritalStatus = sisterMaritalPattern.test(query);
+  const asksSisterMarital = sisterMaritalPattern.test(query);
+  if (asksSisterCount && asksSisterMarital) return 'sisterCountAndMarital';
 
-  if (asksFather) facts.push(['FATHER', bangla ? 'সাদমানের বাবা' : "Sadman's father"]);
-  if (asksMother) facts.push(['MOTHER', bangla ? 'সাদমানের মা' : "Sadman's mother"]);
-  if (asksSisterCount) facts.push(['SISTER_COUNT', bangla ? 'সাদমানের' : 'Sadman']);
-  if (asksSisterMaritalStatus) facts.push(['SISTER_MARITAL_STATUS', bangla ? 'বড় বোনের' : "Sadman's older sister"]);
-
-  if (facts.length === 0) {
-    return {
-      reply: broadFamilyPattern.test(query)
-        ? bangla
-          ? 'পরিবারের কোন নির্দিষ্ট বিষয়টি জানতে চান—বাবা, মা, নাকি বোন?'
-          : 'Which specific family detail would you like to know about—his father, mother, or sister?'
-        : bangla
-          ? 'এই পারিবারিক তথ্যটি আমার কাছে নেই।'
-          : "I don't have that family detail."
-    };
-  }
-
-  const answers = [];
-  for (const [name, subject] of facts) {
-    const value = getFact(name, language);
-    if (!value) {
-      return {
-        status: 503,
-        error: 'The family FAQ is not configured for this language.'
-      };
-    }
-
-    answers.push(bangla ? `${subject} ${value}।` : `${subject} ${value}.`);
-  }
-
-  return { reply: answers.join(' ') };
+  return faqRules.find(({ pattern }) => pattern.test(query))?.id || 'fallback';
 }
 
 function handler(req, res) {
@@ -85,15 +95,20 @@ function handler(req, res) {
   if (query.length > 1000) {
     return res.status(413).json({ error: 'The question is too long.' });
   }
-  if (!familyQuestionPattern.test(query)) {
-    return res.status(400).json({ error: 'Ask a family-related question.' });
+
+  const config = loadResponses();
+  if (!config) {
+    return res.status(503).json({ error: 'Toki FAQ is not configured.' });
   }
 
-  const result = answerFor(query.trim());
-  if (result.status) {
-    return res.status(result.status).json({ error: result.error });
-  }
-  return res.status(200).json({ reply: result.reply, links: [] });
+  const normalizedQuery = query.trim();
+  const bangla = /[\u0980-\u09FF]/u.test(normalizedQuery)
+    || new RegExp(config.banglaPattern, 'iu').test(normalizedQuery);
+  const response = config.answers[getResponseId(normalizedQuery)];
+  return res.status(200).json({
+    reply: bangla ? response.bn : response.en,
+    links: response.links
+  });
 }
 
 module.exports = handler;

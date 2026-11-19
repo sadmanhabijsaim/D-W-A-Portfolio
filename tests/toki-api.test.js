@@ -2,23 +2,51 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 const handler = require('../api/toki');
 
-const envKeys = [
-  'TOKI_FAMILY_FATHER_BN',
-  'TOKI_FAMILY_FATHER_EN',
-  'TOKI_FAMILY_MOTHER_BN',
-  'TOKI_FAMILY_MOTHER_EN',
-  'TOKI_FAMILY_SISTER_COUNT_BN',
-  'TOKI_FAMILY_SISTER_COUNT_EN',
-  'TOKI_FAMILY_SISTER_MARITAL_STATUS_BN',
-  'TOKI_FAMILY_SISTER_MARITAL_STATUS_EN'
+const responseIds = [
+  'familyName',
+  'familySisterMarital',
+  'parentsWork',
+  'fatherWork',
+  'motherWork',
+  'sisterCount',
+  'familyBroad',
+  'familyUnknown',
+  'notListed',
+  'location',
+  'experience',
+  'education',
+  'skills',
+  'projects',
+  'certificates',
+  'cv',
+  'contact',
+  'social',
+  'profile',
+  'portfolio',
+  'sisterCountAndMarital',
+  'fallback'
 ];
 
-function invokeHandler({ method = 'POST', body, env = {} }) {
-  const previousEnv = Object.fromEntries(envKeys.map((key) => [key, process.env[key]]));
-  envKeys.forEach((key) => {
-    if (Object.hasOwn(env, key)) process.env[key] = env[key];
-    else delete process.env[key];
-  });
+function createConfig() {
+  const answers = Object.fromEntries(responseIds.map((id) => [
+    id,
+    {
+      bn: `TEST-BN-${id}`,
+      en: `TEST-EN-${id}`,
+      links: id === 'skills' ? ['skills'] : []
+    }
+  ]));
+
+  return {
+    banglaPattern: '\\b(?:baba|babar|ma|maa|bon|biye|poribar)\\b',
+    answers
+  };
+}
+
+function invokeHandler({ method = 'POST', body, config = createConfig() }) {
+  const previousConfig = process.env.TOKI_FAQ_RESPONSES;
+  if (config === null) delete process.env.TOKI_FAQ_RESPONSES;
+  else process.env.TOKI_FAQ_RESPONSES = JSON.stringify(config);
 
   const res = {
     headers: {},
@@ -41,71 +69,58 @@ function invokeHandler({ method = 'POST', body, env = {} }) {
     handler({ method, body }, res);
     return res;
   } finally {
-    envKeys.forEach((key) => {
-      if (previousEnv[key] === undefined) delete process.env[key];
-      else process.env[key] = previousEnv[key];
-    });
+    if (previousConfig === undefined) delete process.env.TOKI_FAQ_RESPONSES;
+    else process.env.TOKI_FAQ_RESPONSES = previousConfig;
   }
 }
 
-test('answers only the family detail that was asked', () => {
-  const response = invokeHandler({
-    body: { query: 'What does his father do?' },
-    env: { TOKI_FAMILY_FATHER_EN: 'TEST-FATHER-FACT' }
-  });
-
-  assert.equal(response.statusCode, 200);
-  assert.match(response.payload.reply, /TEST-FATHER-FACT/);
-  assert.doesNotMatch(response.payload.reply, /mother|sister/i);
-  assert.equal(response.headers['Cache-Control'], 'no-store');
-});
-
-test('answers Bangla questions in Bangla without including unrelated facts', () => {
-  const response = invokeHandler({
-    body: { query: 'বাবার পেশা কী?' },
-    env: { TOKI_FAMILY_FATHER_BN: 'TEST-BN-FACT' }
-  });
-
-  assert.equal(response.statusCode, 200);
-  assert.match(response.payload.reply, /সাদমানের বাবা TEST-BN-FACT/);
-  assert.doesNotMatch(response.payload.reply, /TEST-(?:MOTHER|SISTER)/);
-});
-
-test('asks for a specific topic instead of disclosing all details', () => {
-  const response = invokeHandler({
-    body: { query: 'Tell me about his family' },
-    env: {
-      TOKI_FAMILY_FATHER_EN: 'TEST-FATHER-FACT',
-      TOKI_FAMILY_MOTHER_EN: 'TEST-MOTHER-FACT'
-    }
-  });
-
-  assert.equal(response.statusCode, 200);
-  assert.match(response.payload.reply, /specific family detail/i);
-  assert.doesNotMatch(response.payload.reply, /TEST-(?:FATHER|MOTHER)-FACT/);
-});
-
-test('answers both sister questions only when both are asked', () => {
-  const response = invokeHandler({
-    body: { query: 'How many sisters does he have and are they married?' },
-    env: {
-      TOKI_FAMILY_SISTER_COUNT_EN: 'TEST-SISTER-COUNT',
-      TOKI_FAMILY_SISTER_MARITAL_STATUS_EN: 'TEST-SISTER-STATUS'
-    }
-  });
-
-  assert.equal(response.statusCode, 200);
-  assert.match(response.payload.reply, /TEST-SISTER-COUNT/);
-  assert.match(response.payload.reply, /TEST-SISTER-STATUS/);
-});
-
-test('returns a clear configuration error when a requested fact is missing', () => {
+test('matches family questions server-side and returns only the requested answer', () => {
   const response = invokeHandler({
     body: { query: 'What does his father do?' }
   });
 
-  assert.equal(response.statusCode, 503);
-  assert.match(response.payload.error, /not configured/i);
+  assert.equal(response.statusCode, 200);
+  assert.equal(response.payload.reply, 'TEST-EN-fatherWork');
+  assert.deepEqual(response.payload.links, []);
+  assert.equal(response.headers['Cache-Control'], 'no-store');
+});
+
+test('detects Bengali questions and returns the Bengali response', () => {
+  const response = invokeHandler({
+    body: { query: 'বাবার পেশা কী?' }
+  });
+
+  assert.equal(response.statusCode, 200);
+  assert.equal(response.payload.reply, 'TEST-BN-fatherWork');
+});
+
+test('broad family questions do not disclose the individual answers', () => {
+  const response = invokeHandler({
+    body: { query: 'Tell me about his family' }
+  });
+
+  assert.equal(response.statusCode, 200);
+  assert.equal(response.payload.reply, 'TEST-EN-familyBroad');
+  assert.doesNotMatch(response.payload.reply, /fatherWork|motherWork|sisterCount/);
+});
+
+test('combines sister facts only when both count and marital status are requested', () => {
+  const response = invokeHandler({
+    body: { query: 'How many sisters does he have and are they married?' }
+  });
+
+  assert.equal(response.statusCode, 200);
+  assert.equal(response.payload.reply, 'TEST-EN-sisterCountAndMarital');
+});
+
+test('answers non-family portfolio questions through the same endpoint', () => {
+  const response = invokeHandler({
+    body: { query: 'What are his skills?' }
+  });
+
+  assert.equal(response.statusCode, 200);
+  assert.equal(response.payload.reply, 'TEST-EN-skills');
+  assert.deepEqual(response.payload.links, ['skills']);
 });
 
 test('does not make up Sadman’s relationship status', () => {
@@ -114,15 +129,23 @@ test('does not make up Sadman’s relationship status', () => {
   });
 
   assert.equal(response.statusCode, 200);
-  assert.match(response.payload.reply, /don't have that family detail/i);
+  assert.equal(response.payload.reply, 'TEST-EN-notListed');
   assert.doesNotMatch(response.payload.reply, /\bsingle\b/i);
 });
 
-test('rejects unsupported methods and malformed questions explicitly', () => {
+test('reports missing FAQ configuration and invalid requests explicitly', () => {
+  const missingConfig = invokeHandler({
+    body: { query: 'What does his father do?' },
+    config: null
+  });
   const methodResponse = invokeHandler({ method: 'GET' });
   const inputResponse = invokeHandler({ body: { query: '   ' } });
+  const lengthResponse = invokeHandler({ body: { query: 'x'.repeat(1001) } });
 
+  assert.equal(missingConfig.statusCode, 503);
+  assert.match(missingConfig.payload.error, /not configured/i);
   assert.equal(methodResponse.statusCode, 405);
   assert.equal(methodResponse.headers.Allow, 'POST');
   assert.equal(inputResponse.statusCode, 400);
+  assert.equal(lengthResponse.statusCode, 413);
 });

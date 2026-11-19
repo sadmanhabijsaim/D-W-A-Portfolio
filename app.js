@@ -495,121 +495,6 @@
       email: { actionLabel: 'Email Sadman', href: 'mailto:sadmansiam260@gmail.com' }
     };
 
-    const familyQuestionPattern = /\b(?:family|father|dad|papa|mother|mom|mum|sister|sibling|brother|parents?|single|married|marriage|marital|wife|spouse|husband|girlfriend|boyfriend|relationship)\b|(?:পরিবার|পারিবারিক|বাবা|পিতা|আব্বা|আব্বু|মা|আম্মু|বোন|ভাই|বিয়ে|বিয়ে|বিবাহ|বউ|স্ত্রী|স্বামী|প্রেমিকা|প্রেমিক)|\b(?:poribar|baba|babar|abbu|abbar|abba|ma|maa|ammu|bon|boner|boro|bhai|biye|biyer|bou|bow|strii)\b/iu;
-    const isBangla = (query) => /[\u0980-\u09FF]/u.test(query)
-      || /\b(?:amar|apnar|tomar|tar|ke|kemon|kothay|ki|bolo|bolun|porashona|jogajog|biye|biyer|bou|bow|strii|baba|babar|abbu|abbar|abba|ma|maa|ammu|bon|boner|boro|poribar|bebsha|bebosha|byabsha|byabosha|pesha|koren|kore|ache|ase|koyjon|grihini)\b/iu.test(query);
-
-    const faqAnswers = [
-      {
-        pattern: /\b(?:age|old|birthday|birth date|salary|religion|married|favorite|favourite)\b|বয়স|বয়স|জন্মদিন|জন্মতারিখ|বিয়ে|বিবাহ|ধর্ম|প্রিয়|প্রিয়/iu,
-        replies: [
-          'দুঃখিত, এই তথ্যটি পোর্টফোলিওতে নেই। নিচের লিংক থেকে সাদমানের সাথে যোগাযোগ করতে পারেন।',
-          "That detail isn't listed in the portfolio. You can contact Sadman using the link below."
-        ],
-        links: ['contact', 'email']
-      },
-      {
-        pattern: /\b(?:location|live|lives|from|hometown|kothay)\b|কোথায়|কোথায়|থাকে|ঠিকানা/iu,
-        replies: [
-          'সাদমান পলাশটোলা, জামালপুর সদর, জামালপুরে থাকেন।',
-          'Sadman lives in Polashtola, Jamalpur Sadar, Jamalpur.'
-        ],
-        links: ['about']
-      },
-      {
-        pattern: /\b(?:experience|years? of experience|oviggota)\b|অভিজ্ঞতা|বছর/iu,
-        replies: [
-          'সাদমানের পোর্টফোলিওতে ২+ বছরের অভিজ্ঞতার কথা উল্লেখ আছে।',
-          "Sadman's portfolio lists 2+ years of experience."
-        ],
-        links: ['about']
-      },
-      {
-        pattern: /\b(?:education|stud(?:y|ies)|university|degree|batch|class rep(?:resentative)?)\b|পড়াশোনা|পড়াশোনা|শিক্ষা|বিশ্ববিদ্যালয়|বিশ্ববিদ্যালয়|ব্যাচ|সিআর|porashona|shikkha|bishwobidyaloy/iu,
-        replies: [
-          'সাদমান Daffodil International University (DIU)-তে Software Engineering-এ B.Sc. করছেন (Batch 44; expected completion 31 December 2028) এবং পাশাপাশি Kamal Khan Hat Fazil Madrasah-এ Fazil পড়ছেন। তিনি 2024 সালে HSC/Alim-এ GPA 4.81 এবং 2022 সালে SSC/Dakhil-এ GPA 4.56 পেয়েছেন; তিনি Section 44-G-এর Class Representative-ও।',
-          'Sadman is pursuing a B.Sc. in Software Engineering at Daffodil International University (DIU), Batch 44 (expected completion: 31 December 2028), alongside Fazil studies at Kamal Khan Hat Fazil Madrasah. He completed HSC/Alim in 2024 with GPA 4.81 and SSC/Dakhil in 2022 with GPA 4.56, and serves as Class Representative for Section 44-G.'
-        ],
-        links: ['education', 'about']
-      },
-      {
-        pattern: /\b(?:skills?|tech stack|technologies|technology|expertise|programming languages?|linux|cyber\s?security|command line|terminal)\b|স্কিল|দক্ষতা|টেকনোলজি|প্রযুক্তি|সাইবার সিকিউরিটি|লিনাক্স|dokkota|projukti/iu,
-        replies: [
-          'সাদমান Python, Java, C, SQL, React, Next.js, PostgreSQL, JavaScript, HTML/CSS ও Kali Linux জানেন। তিনি Linux command শিখছেন এবং Cyber Security-এর কিছু basic বিষয় জানেন।',
-          "Sadman's skills include Python, Java, C, SQL, React, Next.js, PostgreSQL, JavaScript, HTML/CSS, and Kali Linux. He is learning Linux commands and has some basic cybersecurity knowledge."
-        ],
-        links: ['skills']
-      },
-      {
-        pattern: /\b(?:projects?|work samples?|jam|meal\s?master(?:\s?pro)?|meal\s?hishab|job application tracker|jobtracker)\b|প্রজেক্ট|প্রকল্প|prokolpo/iu,
-        replies: [
-          'সাদমানের উল্লেখযোগ্য প্রজেক্ট হলো Jam voice assistant, MealMaster Pro (MealHishab), এবং Job Application Tracker।',
-          "Sadman's featured projects include the Jam voice assistant, MealMaster Pro (MealHishab), and Job Application Tracker."
-        ],
-        links: ['projects', 'github']
-      },
-      {
-        pattern: /\b(?:certificates?|certifications?|cs301|computer architecture|saylor university|intellipaat)\b|সার্টিফিকেট|সনদ|sonod/iu,
-        replies: [
-          'সাদমানের Certificate of Appreciation (Volunteer), Career Planning Roadmap seminar-এ Active Participation-এর Certificate of Achievement, Saylor University থেকে CS301: Computer Architecture-এর certificate, এবং Intellipaat-এর Free SQL Certification Course certificate আছে।',
-          'Sadman has a Certificate of Appreciation for volunteering, a Certificate of Achievement for active participation in DIU’s Career Planning Roadmap seminar, a Saylor University Certificate of Achievement for CS301: Computer Architecture, and an Intellipaat Free SQL Certification Course certificate.'
-        ],
-        links: ['certificates']
-      },
-      {
-        pattern: /\b(?:cv|resume|résumé)\b|সিভি/iu,
-        replies: [
-          'সাদমানের CV নিচের লিংকে পাবেন।',
-          "Sadman's CV is available here."
-        ],
-        links: ['cv']
-      },
-      {
-        pattern: /\b(?:contact|email|e-mail|phone|reach(?: out)?|jogajog|numbar)\b|যোগাযোগ|ইমেইল|ইমেল|ফোন|নম্বর/iu,
-        replies: [
-          'সাদমানের সাথে যোগাযোগ করতে sadmansiam260@gmail.com-এ ইমেইল করুন।',
-          'You can contact Sadman at sadmansiam260@gmail.com.'
-        ],
-        links: ['contact', 'email']
-      },
-      {
-        pattern: /\b(?:github|git hub|linkedin|social links?)\b|গিটহাব|লিংকডইন/iu,
-        replies: [
-          'সাদমানের GitHub ও LinkedIn প্রোফাইলের লিংক নিচে দেওয়া আছে।',
-          "Sadman's GitHub and LinkedIn profiles are linked below."
-        ],
-        links: ['github', 'linkedin']
-      },
-      {
-        pattern: /\b(?:profile|about|who is|who's|what does (?:sadman|he) do|full name|name|student|developer|job|occupation|profession|role)\b|পরিচয়|পরিচয়|নাম|কে|porichoy|nam|ke/iu,
-        replies: [
-          'সাদমান হাবিজ সায়েম একজন Software Engineering শিক্ষার্থী ও full-stack developer।',
-          'Sadman Habij Saim is a Software Engineering student and full-stack developer.'
-        ],
-        links: ['about']
-      },
-      {
-        pattern: /\b(?:portfolio|website|site|links?|urls?)\b|পোর্টফোলিও|ওয়েবসাইট|ওয়েবসাইট|লিংক/iu,
-        replies: [
-          'সাদমানের পোর্টফোলিও ও প্রজেক্টের লিংক নিচে দেওয়া আছে।',
-          "Sadman's portfolio and projects are linked below."
-        ],
-        links: ['home', 'projects']
-      }
-    ];
-
-    const getFaqAnswer = (query) => {
-      const answer = faqAnswers.find(({ pattern }) => pattern.test(query));
-      if (answer) return { reply: answer.replies[isBangla(query) ? 0 : 1], links: answer.links };
-
-      return {
-        reply: isBangla(query)
-          ? 'দুঃখিত, এই প্রশ্নের উত্তর নেই। সাদমানের প্রোফাইল, দক্ষতা, প্রজেক্ট, পড়াশোনা, সার্টিফিকেট, CV বা যোগাযোগ সম্পর্কে জিজ্ঞেস করুন।'
-          : "Sorry, I don't have that in the FAQ yet. Ask about Sadman's profile, skills, projects, education, certificates, CV, or contact details.",
-        links: []
-      };
-    };
-
     const setMinimized = (minimized) => {
       panel.classList.toggle('is-minimized', minimized);
       minimizeButton?.setAttribute('aria-expanded', String(!minimized));
@@ -689,40 +574,36 @@
 
       addBubble(message, 'user');
       input.value = '';
+      const submitButton = form.querySelector('button[type="submit"]');
+      input.disabled = true;
+      if (submitButton) submitButton.disabled = true;
       let answer;
-      if (familyQuestionPattern.test(message)) {
-        const submitButton = form.querySelector('button[type="submit"]');
-        input.disabled = true;
-        if (submitButton) submitButton.disabled = true;
-        try {
-          const response = await fetch('/api/toki', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            cache: 'no-store',
-            body: JSON.stringify({ query: message })
-          });
-          const payload = await response.json();
-          if (!response.ok) {
-            throw new Error(payload?.error || `Family FAQ request failed (${response.status})`);
-          }
-          if (typeof payload?.reply !== 'string' || !Array.isArray(payload.links)) {
-            throw new Error('Family FAQ returned an invalid response');
-          }
-          answer = payload;
-        } catch (error) {
-          console.error('Unable to request Toki family FAQ:', error);
-          answer = {
-            reply: isBangla(message)
-              ? 'দুঃখিত, পরিবার-সংক্রান্ত উত্তর এখন পাওয়া যাচ্ছে না। পরে আবার চেষ্টা করুন।'
-              : 'Sorry, the family FAQ is unavailable right now. Please try again later.',
-            links: []
-          };
-        } finally {
-          input.disabled = false;
-          if (submitButton) submitButton.disabled = false;
+      try {
+        const response = await fetch('/api/toki', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          cache: 'no-store',
+          body: JSON.stringify({ query: message })
+        });
+        const payload = await response.json();
+        if (!response.ok) {
+          throw new Error(payload?.error || `Toki FAQ request failed (${response.status})`);
         }
-      } else {
-        answer = getFaqAnswer(message);
+        if (typeof payload?.reply !== 'string' || !Array.isArray(payload.links)) {
+          throw new Error('Toki FAQ returned an invalid response');
+        }
+        answer = payload;
+      } catch (error) {
+        console.error('Unable to request Toki FAQ:', error);
+        answer = {
+          reply: /[\u0980-\u09FF]/u.test(message)
+            ? 'দুঃখিত, উত্তর এখন পাওয়া যাচ্ছে না। পরে আবার চেষ্টা করুন।'
+            : 'Sorry, Toki is unavailable right now. Please try again later.',
+          links: []
+        };
+      } finally {
+        input.disabled = false;
+        if (submitButton) submitButton.disabled = false;
       }
       addBubble(answer.reply, 'bot', '', answer.links);
       input.focus();

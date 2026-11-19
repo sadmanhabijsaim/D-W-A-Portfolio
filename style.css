@@ -5045,6 +5045,32 @@ textarea.mac-glass-input {
   mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 80%, transparent 100%);
 }
 
+.portfolio-hero-redesign #canvas-container::after {
+  position: absolute;
+  inset: -8% -6% -10%;
+  z-index: 1;
+  background: url("/assets/ambient-network.svg") center / cover no-repeat;
+  content: "";
+  opacity: 0.36;
+  pointer-events: none;
+  transform:
+    perspective(960px)
+    rotateY(var(--scroll-rotate-y, 0deg))
+    translate3d(
+      calc(var(--scroll-parallax-x, 0px) * 0.28),
+      calc(var(--scroll-parallax-y, 0px) * 0.28),
+      0
+    )
+    scale(calc(var(--scroll-scale, 1) * 1.02));
+  transform-origin: 69% 48%;
+  translate: 0 0;
+  rotate: y 0deg;
+  animation: ambient-network-drift 10s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 82%, transparent 100%);
+}
+
 @keyframes developer-grid-drift {
   from {
     opacity: 0.24;
@@ -5054,9 +5080,29 @@ textarea.mac-glass-input {
   }
 }
 
+@keyframes ambient-network-drift {
+  from {
+    opacity: 0.34;
+    translate: -2.5% 1%;
+    rotate: y -10deg;
+  }
+  to {
+    opacity: 0.5;
+    translate: 2.5% -1%;
+    rotate: y 10deg;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .portfolio-hero-redesign #canvas-container::before {
     animation: none;
+    will-change: auto;
+  }
+
+  .portfolio-hero-redesign #canvas-container::after {
+    animation: none;
+    translate: 0 0;
+    opacity: 0.18;
     will-change: auto;
   }
 }
@@ -5248,6 +5294,36 @@ textarea.mac-glass-input {
     repeating-linear-gradient(0deg, rgba(132, 87, 124, 0.13) 0 1px, transparent 1px 48px);
 }
 
+:root[data-theme="light"] .portfolio-hero-redesign #canvas-container::after {
+  filter: hue-rotate(85deg) saturate(0.7) brightness(0.9);
+  opacity: 0.46;
+  animation-name: ambient-network-drift-light;
+  animation-duration: 10s;
+}
+
+@keyframes ambient-network-drift-light {
+  from {
+    opacity: 0.42;
+    translate: -2.5% 1%;
+    rotate: y -10deg;
+  }
+  to {
+    opacity: 0.6;
+    translate: 2.5% -1%;
+    rotate: y 10deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="light"] .portfolio-hero-redesign #canvas-container::after {
+    animation: none;
+    translate: 0 0;
+    rotate: y 0deg;
+    opacity: 0.46;
+    will-change: auto;
+  }
+}
+
 .portfolio-hero-redesign .canvas-vignette-overlay {
   overflow: hidden;
   isolation: isolate;
@@ -5308,6 +5384,7 @@ textarea.mac-glass-input {
     animation: none;
     will-change: auto;
   }
+
 }
 
 .portfolio-hero-redesign .hero-portrait-in-circle {

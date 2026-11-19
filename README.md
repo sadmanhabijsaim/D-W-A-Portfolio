@@ -20,18 +20,13 @@ npm run preview
 
 The production build is written to `dist/`.
 
-## Toki family FAQ
+## Toki FAQ
 
-Family facts are not stored in `app.js` or sent in the browser bundle. The `/api/toki` Vercel Function reads them from these server-only environment variables:
+FAQ answer content is not embedded in `app.js`, the browser bundle, or the GitHub source. The `/api/toki` Vercel Function matches questions and reads answer content from the server-only `TOKI_FAQ_RESPONSES` environment variable.
 
-- `TOKI_FAMILY_FATHER_BN` and `TOKI_FAMILY_FATHER_EN`
-- `TOKI_FAMILY_MOTHER_BN` and `TOKI_FAMILY_MOTHER_EN`
-- `TOKI_FAMILY_SISTER_COUNT_BN` and `TOKI_FAMILY_SISTER_COUNT_EN`
-- `TOKI_FAMILY_SISTER_MARITAL_STATUS_BN` and `TOKI_FAMILY_SISTER_MARITAL_STATUS_EN`
+For local development, create `.env.local` from `.env.example` and add the private response configuration. `.env.local` is ignored by Git. Run `npx vercel dev` to use the API locally; `npm run dev` starts Vite only. In Vercel, import the `.env.local` variable under **Project Settings → Environment Variables** for Production and Preview, mark it as Secret, then redeploy. Do not use a `VITE_` prefix.
 
-Set them in Vercel under **Project Settings → Environment Variables** for each deployment environment. For local testing, copy `.env.example` to `.env.local` and fill in the values there; `.env.local` is ignored by Git. Do not use a `VITE_` prefix for these values.
-
-The public chatbot returns only the specific family detail asked for; broad questions prompt the visitor to be more specific. Because anyone can use a public chatbot, these facts are still available to anyone who asks. Environment variables hide them from the repository and browser source, but do not make the answers access-controlled.
+The public chatbot only returns the specific detail asked for. Its endpoint is public, so visitors can still ask it for those answers; keeping them in environment variables hides them from the repository and browser source but does not restrict who can receive them.
 
 ## Deploy to Vercel
 
