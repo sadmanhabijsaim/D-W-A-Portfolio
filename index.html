@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Sadman Habij Saim is a full-stack developer and DIU Software Engineering student building responsive web apps with React, Node.js, Python, and PostgreSQL.">
+  <meta name="author" content="Sadman Habij Saim">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#e9eef5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#05070e" media="(prefers-color-scheme: dark)">
+  <title>Sadman Habij Saim | Full-Stack Developer Portfolio</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Sadman Habij Saim Portfolio">
+  <meta property="og:title" content="Sadman Habij Saim | Full-Stack Developer Portfolio">
+  <meta property="og:description"
+    content="Explore Sadman Habij Saim’s web development projects, skills, education, and experience.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sadman Habij Saim | Full-Stack Developer Portfolio">
+  <meta name="twitter:description"
+    content="Explore Sadman Habij Saim’s web development projects, skills, education, and experience.">
+  <link rel="icon" type="image/png" href="/hhhhh.png">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sadman Habij Saim",
+      "jobTitle": "Full-Stack Developer",
+      "description": "Full-stack developer and Software Engineering student at Daffodil International University, building responsive web applications.",
+      "email": "mailto:sadmansiam260@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jamalpur",
+        "addressCountry": "BD"
+      },
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "Daffodil International University"
+      },
+      "sameAs": [
+        "https://github.com/sadmanhabijsaim",
+        "https://www.linkedin.com/in/sadman-habij-saimsiam/",
+        "https://x.com/sadmanhabijsaim"
+      ],
+      "knowsAbout": [
+        "Full-stack web development",
+        "JavaScript",
+        "React",
+        "Next.js",
+        "Node.js",
+        "Python",
+        "Django",
+        "PostgreSQL",
+        "Web application development"
+      ]
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
+  <script>
+    // Apply the saved theme before the page paints to prevent a light/dark flash.
+    (() => {
+      let savedTheme = null;
+      try {
+        savedTheme = localStorage.getItem('portfolio-theme');
+      } catch {
+        // Fall back to the operating system preference when storage is blocked.
+      }
+      const theme = savedTheme === 'light' || savedTheme === 'dark'
+        ? savedTheme
+        : 'dark';
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="portfolio-hero-redesign">
+
+  <!-- Ambient Fluid Glow Orbs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Fixed ambient background layers -->
+  <div id="canvas-container">
+    <div class="canvas-vignette-overlay"></div>
+  </div>
+
+  <!-- SVG Gradient Definitions for macOS Dock Navbar Icons -->
+  <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+    <defs>
+      <linearGradient id="navFinderBg" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" />
+        <stop offset="100%" stop-color="#0284c7" />
+      </linearGradient>
+      <linearGradient id="navAboutBg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#818cf8" />
+        <stop offset="100%" stop-color="#4f46e5" />
+      </linearGradient>
+      <linearGradient id="navProcessBg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fb923c" />
+        <stop offset="100%" stop-color="#ea580c" />
+      </linearGradient>
+      <linearGradient id="navMsgBg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#34d399" />
+        <stop offset="100%" stop-color="#059669" />
+      </linearGradient>
+      <linearGradient id="navMailBg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#00f0ff" />
+        <stop offset="100%" stop-color="#0284c7" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- Floating macOS Dock-Style Navigation Header -->
+  <header class="navbar-wrapper">
+    <!-- Ambient Top Glow behind dock navbar -->
+    <div class="navbar-ambient-glow" aria-hidden="true"></div>
+
+    <nav class="navbar mac-dock-navbar">
+      <!-- Left: Brand Logo -->
+      <a href="#home" class="brand-logo" id="brand-logo">
+        <img src="assets/logo.png" alt="Sadman Habij Saim Logo" class="brand-logo-img">
+        <span class="logo-text">Sadman Habij Saim</span>
+      </a>
+
+      <!-- Center: macOS Dock Navigation Menu -->
+      <ul class="nav-menu mac-dock-menu" id="mac-dock-menu">
+        <!-- 1. Home (Finder) -->
+        <li>
+          <a href="#home" class="nav-link dock-nav-item active" data-section="home" aria-label="Home section">
+            <span class="dock-nav-icon">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="100" rx="24" fill="url(#navFinderBg)" />
+                <path d="M 22 22 Q 50 18 50 50 Q 50 78 22 78 Z" fill="#ffffff" opacity="0.95" />
+                <path d="M 50 22 Q 78 20 78 50 Q 78 78 50 78 Z" fill="#cde4fe" />
+                <path d="M 50 22 Q 44 48 50 50 Q 56 52 50 78" stroke="#004d9c" stroke-width="4.5" stroke-linecap="round"
+                  fill="none" />
+                <circle cx="34" cy="40" r="5" fill="#00356d" />
+                <circle cx="66" cy="40" r="5" fill="#00356d" />
+                <path d="M 32 58 Q 50 74 68 58" stroke="#00356d" stroke-width="5" stroke-linecap="round" fill="none" />
+              </svg>
+            </span>
+            <span class="dock-nav-label">Home</span>
+          </a>
+        </li>
+
+        <!-- 2. About (User Profile) -->
+        <li>
+          <a href="#about" class="nav-link dock-nav-item" data-section="about" aria-label="About section">
+            <span class="dock-nav-icon">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="100" rx="24" fill="url(#navAboutBg)" />
+                <circle cx="50" cy="38" r="18" fill="#ffffff" />
+                <path d="M 22 84 C 22 64 36 58 50 58 C 64 58 78 64 78 84 Z" fill="#ffffff" opacity="0.95" />
+              </svg>
+            </span>
+            <span class="dock-nav-label">About</span>
+          </a>
+        </li>
+
+        <!-- 3. Skills (VS Code) -->
+        <li>
+          <a href="#skills" class="nav-link dock-nav-item" data-section="skills" aria-label="Skills section">
+            <span class="dock-nav-icon">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="100" rx="24" fill="#ffffff" />
+                <g transform="translate(14, 15) scale(0.72)">
+                  <path
+                    d="M72.2 4.1L28.1 40.8 13.9 30c-1.8-1.4-4.3-1.4-6.1-.1L1.6 34.7c-2.1 1.6-2.1 4.7 0 6.3l12.4 9.5L1.6 60c-2.1 1.6-2.1 4.7 0 6.3l6.2 4.8c1.8 1.4 4.3 1.3 6.1-.1l14.2-10.8 44.1 36.7c1.7 1.8 4.5 2.3 6.8 1.2 2.3-1.1 3.8-3.4 3.8-6V10.1c0-2.6-1.5-4.9-3.8-6z"
+                    fill="#0066b8" />
+                  <path d="M76 10.1v79.8l-47.9-39.9L76 10.1z" fill="#007acc" />
+                  <path d="M28.1 40.8l47.9-30.7L50.4 44.2 28.1 40.8z" fill="#38c8ff" />
+                  <path d="M28.1 59.2l22.3-3.4 25.6 34.1L28.1 59.2z" fill="#005a9e" />
+                </g>
+              </svg>
+            </span>
+            <span class="dock-nav-label">Skills</span>
+          </a>
+        </li>
+
+        <!-- 4. Education (Academic Background) -->
+        <li>
+          <a href="#education" class="nav-link dock-nav-item" data-section="education"
+            aria-label="Education section">
+            <span class="dock-nav-icon">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="100" rx="24" fill="url(#navMsgBg)" />
+                <path
+                  d="M 24 46 C 24 32 35 24 50 24 C 65 24 76 32 76 46 C 76 60 65 66 50 66 C 44 66 38 64 34 62 L 24 68 L 26 57 C 24 54 24 50 24 46 Z"
+                  fill="#ffffff" />
+              </svg>
+            </span>
+            <span class="dock-nav-label">Education</span>
+          </a>
+        </li>
+
+        <!-- 5. Projects (Launchpad Grid) -->
+        <li>
+          <a href="#projects" class="nav-link dock-nav-item" data-section="projects" aria-label="Projects section">
+            <span class="dock-nav-icon">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="100" rx="24" fill="#ffffff" />
+                <rect x="18" y="18" width="18" height="18" rx="5" fill="#f43f5e" />
+                <rect x="41" y="18" width="18" height="18" rx="5" fill="#f97316" />
+                <rect x="64" y="18" width="18" height="18" rx="5" fill="#facc15" />
+                <rect x="18" y="41" width="18" height="18" rx="5" fill="#22c55e" />
+                <rect x="41" y="41" width="18" height="18" rx="5" fill="#94a3b8" />
+                <rect x="64" y="41" width="18" height="18" rx="5" fill="#ec4899" />
+                <rect x="18" y="64" width="18" height="18" rx="5" fill="#a855f7" />
+                <rect x="41" y="64" width="18" height="18" rx="5" fill="#3b82f6" />
+                <rect x="64" y="64" width="18" height="18" rx="5" fill="#06b6d4" />
+              </svg>
+            </span>
+            <span class="dock-nav-label">Projects</span>
+          </a>
+        </li>
+
+        <!-- 6. Process (Workflow Gears) -->
+        <li>
+          <a href="#process" class="nav-link dock-nav-item" data-section="process" aria-label="Process section">
+            <span class="dock-nav-icon">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="100" rx="24" fill="url(#navProcessBg)" />
+                <circle cx="50" cy="50" r="16" stroke="#ffffff" stroke-width="6" fill="none" />
+                <path
+                  d="M50 18 L50 28 M50 72 L50 82 M18 50 L28 50 M72 50 L82 50 M28 28 L36 36 M64 64 L72 72 M72 28 L64 36 M36 64 L28 72"
+                  stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="dock-nav-label">Process</span>
+          </a>
+        </li>
+
+        <!-- 7. Contact (Mail Envelope) -->
+        <li>
+          <a href="#contact" class="nav-link dock-nav-item" data-section="contact" aria-label="Contact section">
+            <span class="dock-nav-icon">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="100" rx="24" fill="url(#navMailBg)" />
+                <rect x="22" y="28" width="56" height="44" rx="8" fill="#ffffff" />
+                <path d="M 24 34 L 50 54 L 76 34" stroke="#0284c7" stroke-width="4.5" stroke-linecap="round"
+                  stroke-linejoin="round" fill="none" />
+              </svg>
+            </span>
+            <span class="dock-nav-label">Contact</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Right Action Controls with Dock Separator -->
+      <div class="nav-actions">
+        <div class="nav-dock-divider" role="separator" aria-orientation="vertical"></div>
+
+        <a href="/cv-sadman354.pdf" download="cv-sadman354.pdf" target="_blank" class="btn-download-cv mac-glass-pill"
+          id="btn-download-cv" aria-label="Download CV">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Download CV</span>
+        </a>
+        <button class="btn-theme-toggle mac-glass-pill" id="btn-theme-toggle" type="button"
+          aria-label="Switch to light mode" aria-pressed="false" title="Switch to light mode">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+        <!-- Hamburger: Mobile Only -->
+        <button class="hamburger-btn mac-glass-pill" id="hamburger-btn" type="button" aria-label="Open menu"
+          aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-nav-drawer" class="nav-drawer" role="navigation" aria-label="Mobile navigation">
+      <a href="#home" class="nav-link active" data-section="home">
+        <span class="mobile-nav-icon">
+          <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
+            <rect width="100" height="100" rx="24" fill="url(#navFinderBg)" />
+            <circle cx="34" cy="40" r="5" fill="#00356d" />
+            <circle cx="66" cy="40" r="5" fill="#00356d" />
+            <path d="M 32 58 Q 50 74 68 58" stroke="#00356d" stroke-width="6" stroke-linecap="round" fill="none" />
+          </svg>
+        </span>
+        Home
+      </a>
+      <a href="#about" class="nav-link" data-section="about">
+        <span class="mobile-nav-icon">
+          <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
+            <rect width="100" height="100" rx="24" fill="url(#navAboutBg)" />
+            <circle cx="50" cy="38" r="18" fill="#ffffff" />
+            <path d="M 22 84 C 22 64 36 58 50 58 C 64 58 78 64 78 84 Z" fill="#ffffff" />
+          </svg>
+        </span>
+        About
+      </a>
+      <a href="#skills" class="nav-link" data-section="skills">
+        <span class="mobile-nav-icon">
+          <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
+            <rect width="100" height="100" rx="24" fill="#007acc" /><text x="50" y="65" font-size="44"
+              font-weight="bold" fill="#ffffff" text-anchor="middle">&lt;/&gt;</text>
+          </svg>
+        </span>
+        Skills
+      </a>
+      <a href="#education" class="nav-link" data-section="education">
+        <span class="mobile-nav-icon">
+          <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
+            <rect width="100" height="100" rx="24" fill="url(#navMsgBg)" />
+            <circle cx="50" cy="50" r="22" fill="#ffffff" />
+          </svg>
+        </span>
+        Education
+      </a>
+      <a href="#projects" class="nav-link" data-section="projects">
+        <span class="mobile-nav-icon">
+          <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
+            <rect width="100" height="100" rx="24" fill="#ffffff" />
+            <rect x="20" y="20" width="22" height="22" rx="5" fill="#f43f5e" />
+            <rect x="58" y="20" width="22" height="22" rx="5" fill="#f59e0b" />
+            <rect x="20" y="58" width="22" height="22" rx="5" fill="#10b981" />
+            <rect x="58" y="58" width="22" height="22" rx="5" fill="#3b82f6" />
+          </svg>
+        </span>
+        Projects
+      </a>
+      <a href="#process" class="nav-link" data-section="process">
+        <span class="mobile-nav-icon">
+          <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
+            <rect width="100" height="100" rx="24" fill="url(#navProcessBg)" />
+            <circle cx="50" cy="50" r="18" stroke="#ffffff" stroke-width="7" fill="none" />
+          </svg>
+        </span>
+        Process
+      </a>
+      <a href="#contact" class="nav-link" data-section="contact">
+        <span class="mobile-nav-icon">
+          <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
+            <rect width="100" height="100" rx="24" fill="url(#navMailBg)" />
+            <rect x="24" y="32" width="52" height="36" rx="6" fill="#ffffff" />
+          </svg>
+        </span>
+        Contact
+      </a>
+      <div class="drawer-action-row">
+        <a href="/cv-sadman354.pdf" download="cv-sadman354.pdf" target="_blank" class="drawer-btn-cv">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Download CV (PDF)</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Scrollable Content Over Background Video -->
+  <main class="content-wrapper">
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="home" class="hero-section">
+      <div class="hero-container">
+
+        <!-- Hero Left Column: Intro & Calls to Action -->
+        <div class="hero-content hero-reveal">
+          <!-- Role Pill -->
+          <div class="status-pill mac-glass-pill">
+            <span class="status-dot"></span>
+            <span>Software Engineer &amp; Student at DIU</span>
+          </div>
+
+          <!-- Main Title -->
+          <h1 class="hero-title">
+            I build<br>
+            <span class="gradient-text">digital experiences</span><br>
+            that matter.
+          </h1>
+
+          <!-- Intro Paragraph -->
+          <p class="hero-description">
+            I'm <strong class="text-white">Sadman Habij Saim</strong>, a passionate software engineering student and
+            full-stack developer who loves turning ideas into scalable, beautiful and performant web applications.
+          </p>
+
+          <!-- Action Buttons with macOS Liquid Styling -->
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-mac-primary">
+              <span>View My Work</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-mac-glass">
+              <span>Let's Talk</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Social Icons Row -->
+          <div class="social-row">
+            <a href="https://github.com/sadmanhabijsaim" target="_blank" rel="noreferrer"
+              class="social-icon-btn mac-glass-sub" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/sadman-habij-saimsiam/" target="_blank" rel="noreferrer"
+              class="social-icon-btn mac-glass-sub" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </a>
+            <a href="https://x.com/sadmanhabijsaim" target="_blank" rel="noreferrer"
+              class="social-icon-btn mac-glass-sub" aria-label="Twitter / X">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <a href="mailto:sadmansiam260@gmail.com" class="social-icon-btn mac-glass-sub" aria-label="Email">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: Floating Telemetry Cards Framing Background Video -->
+        <div class="hero-visual-frame hero-reveal-right">
+          <!-- Cyber Orbit Glow Background -->
+          <div class="cyber-glow-circle"></div>
+          <div class="hero-portrait-shell hero-portrait-in-circle">
+            <div class="hero-portrait-circle-mask">
+              <img class="hero-portrait" src="/assets/hero-portrait-circle.png" alt="Portrait of Sadman Habij Saim"
+                fetchpriority="high" decoding="async">
+            </div>
+            <img class="hero-portrait hero-portrait-popout" src="/assets/hero-portrait-circle.png" alt=""
+              aria-hidden="true" decoding="async">
+            <span class="portrait-scanline" aria-hidden="true"></span>
+          </div>
+
+          <!-- Interactive 3D technology composition -->
+          <div class="tech-composition" id="tech-composition" aria-label="Technology expertise">
+            <div class="tech-item tech-icon-item" data-depth="0.42" style="--tech-x: 6%; --tech-y: 16%; --tech-rotate: -12deg;">
+              <div class="tech-float tech-float-a">
+                <span class="tech-icon tech-github" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.8-.26.8-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0Z"/></svg>
+                </span>
+              </div>
+            </div>
+            <div class="tech-item tech-icon-item" data-depth="0.7" style="--tech-x: 31%; --tech-y: 5%; --tech-rotate: 9deg;">
+              <div class="tech-float tech-float-b"><span class="tech-icon tech-js" aria-label="JavaScript"><img class="tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript logo"></span></div>
+            </div>
+            <div class="tech-item tech-icon-item" data-depth="0.55" style="--tech-x: 59%; --tech-y: 13%; --tech-rotate: -7deg;">
+              <div class="tech-float tech-float-c"><span class="tech-icon tech-react" aria-label="React"><img class="tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React logo"></span></div>
+            </div>
+            <div class="tech-item tech-icon-item" data-depth="0.85" style="--tech-x: 78%; --tech-y: 29%; --tech-rotate: 14deg;">
+              <div class="tech-float tech-float-d"><span class="tech-icon tech-node" aria-label="Node.js"><img class="tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js logo"></span></div>
+            </div>
+            <div class="tech-item tech-icon-item" data-depth="0.62" style="--tech-x: 14%; --tech-y: 47%; --tech-rotate: 8deg;">
+              <div class="tech-float tech-float-e"><span class="tech-icon tech-python" aria-label="Python"><img class="tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo"></span></div>
+            </div>
+            <div class="tech-item tech-icon-item" data-depth="0.92" style="--tech-x: 66%; --tech-y: 48%; --tech-rotate: -15deg;">
+              <div class="tech-float tech-float-f"><span class="tech-icon tech-docker" aria-label="Docker"><img class="tech-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker logo"></span></div>
+            </div>
+            <div class="tech-item tech-pill-item" data-depth="0.34" style="--tech-x: 2%; --tech-y: 73%; --tech-rotate: -8deg;">
+              <div class="tech-float tech-float-b"><span class="tech-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg>Frontend</span></div>
+            </div>
+            <div class="tech-item tech-pill-item" data-depth="0.8" style="--tech-x: 30%; --tech-y: 78%; --tech-rotate: 6deg;">
+              <div class="tech-float tech-float-d"><span class="tech-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"/></svg>Backend</span></div>
+            </div>
+            <div class="tech-item tech-pill-item" data-depth="0.5" style="--tech-x: 56%; --tech-y: 70%; --tech-rotate: -5deg;">
+              <div class="tech-float tech-float-a"><span class="tech-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Clean Code</span></div>
+            </div>
+            <div class="tech-item tech-pill-item" data-depth="0.74" style="--tech-x: 71%; --tech-y: 83%; --tech-rotate: 10deg;">
+              <div class="tech-float tech-float-e"><span class="tech-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 22h4M8.5 14.5A7 7 0 1 1 15.5 14.5c-.9.7-1.5 1.5-1.5 2.5h-4c0-1-.6-1.8-1.5-2.5Z"/></svg>Problem Solving</span></div>
+            </div>
+            <div class="tech-item tech-pill-item" data-depth="0.46" style="--tech-x: 4%; --tech-y: 31%; --tech-rotate: 11deg;">
+              <div class="tech-float tech-float-c"><span class="tech-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8 4 12l4 4M16 8l4 4-4 4M14 5l-4 14"/></svg>API Development</span></div>
+            </div>
+            <div class="tech-item tech-pill-item" data-depth="0.66" style="--tech-x: 42%; --tech-y: 91%; --tech-rotate: -9deg;">
+              <div class="tech-float tech-float-f"><span class="tech-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5"/></svg>System Design</span></div>
+            </div>
+          </div>
+
+
+          <!-- Right Floating Stats Column -->
+          <div class="hero-floating-stats">
+            <!-- Stat 1: 02+ Years of Experience -->
+            <div class="floating-stat-card mac-glass-window">
+              <div class="stat-card-row">
+                <span class="stat-big-num">02+</span>
+                <div class="stat-card-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </div>
+              </div>
+              <span class="stat-card-label">Years of Experience</span>
+            </div>
+
+            <!-- Stat 2: 10+ Projects Completed -->
+            <div class="floating-stat-card mac-glass-window">
+              <div class="stat-card-row">
+                <span class="stat-big-num">10+</span>
+                <div class="stat-card-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <span class="stat-card-label">Projects Completed</span>
+            </div>
+
+            <!-- Stat 3: 99% Client Satisfaction -->
+            <div class="floating-stat-card mac-glass-window">
+              <div class="stat-card-row">
+                <span class="stat-big-num">99%</span>
+                <div class="stat-card-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                    </polygon>
+                  </svg>
+                </div>
+              </div>
+              <span class="stat-card-label">Client Satisfaction</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================== ABOUT & EXPERTISE SECTION ==================== -->
+    <section id="about" class="section-container">
+      <div class="grid-2col">
+
+        <!-- Left Card: About Me -->
+        <div class="glass-card mac-glass-window">
+          <div class="mac-window-topbar">
+            <div class="mac-traffic-lights">
+              <span class="traffic-dot dot-close"></span>
+              <span class="traffic-dot dot-minimize"></span>
+              <span class="traffic-dot dot-expand"></span>
+            </div>
+          </div>
+
+          <div class="card-header">
+            <div class="header-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h2 class="card-title">About Me</h2>
+          </div>
+
+          <p class="about-text">
+            I'm a full-stack developer and Software Engineering student with a strong focus on building modern,
+            responsive and user-friendly web applications. I enjoy solving complex problems, database management, and
+            continuously learning new technologies.
+          </p>
+
+          <!-- 2x2 Meta Grid -->
+          <div class="meta-grid">
+            <div class="meta-item mac-glass-sub">
+              <div class="meta-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="meta-info">
+                <span class="meta-label">Name</span>
+                <span class="meta-value">Sadman Habij Saim</span>
+              </div>
+            </div>
+
+            <div class="meta-item mac-glass-sub">
+              <div class="meta-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="meta-info">
+                <span class="meta-label">Location</span>
+                <span class="meta-value">Polashtola, Jamalpur Sadar, Jamalpur</span>
+              </div>
+            </div>
+
+            <div class="meta-item mac-glass-sub">
+              <div class="meta-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="meta-info">
+                <span class="meta-label">Email</span>
+                <span class="meta-value">sadmansiam260@gmail.com</span>
+              </div>
+            </div>
+
+            <div class="meta-item mac-glass-sub">
+              <div class="meta-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="meta-info">
+                <span class="meta-label">Availability</span>
+                <span class="meta-value flex-align-center">
+                  <span class="avail-dot"></span>
+                  Open to Work
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Button -->
+          <div class="card-action-bottom">
+            <a href="#contact" class="btn btn-outline-glass mac-glass-pill">
+              <span>More About Me</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Card: My Expertise -->
+        <div id="skills" class="glass-card mac-glass-window">
+          <div class="mac-window-topbar">
+            <div class="mac-traffic-lights">
+              <span class="traffic-dot dot-close"></span>
+              <span class="traffic-dot dot-minimize"></span>
+              <span class="traffic-dot dot-expand"></span>
+            </div>
+          </div>
+
+          <div class="card-header">
+            <div class="header-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h2 class="card-title">My Expertise/Skills</h2>
+          </div>
+
+          <div class="skills-list">
+            <!-- Skill 1 -->
+            <div class="skill-row">
+              <div class="skill-labels">
+                <span class="skill-name">HTML / CSS / Tailwind CSS / JavaScript</span>
+                <span class="skill-pct">95%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" style="--target-width: 95%;"></div>
+              </div>
+            </div>
+
+            <!-- Skill 2 -->
+            <div class="skill-row">
+              <div class="skill-labels">
+                <span class="skill-name">React / Next.js</span>
+                <span class="skill-pct">90%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" style="--target-width: 90%;"></div>
+              </div>
+            </div>
+
+            <!-- Skill 3 -->
+            <div class="skill-row">
+              <div class="skill-labels">
+                <span class="skill-name">Node.js / Express / PHP</span>
+                <span class="skill-pct">85%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" style="--target-width: 85%;"></div>
+              </div>
+            </div>
+
+            <!-- Skill 4 -->
+            <div class="skill-row">
+              <div class="skill-labels">
+                <span class="skill-name">Python / Django / AI Integration</span>
+                <span class="skill-pct">85%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" style="--target-width: 85%;"></div>
+              </div>
+            </div>
+
+            <!-- Skill 5 -->
+            <div class="skill-row">
+              <div class="skill-labels">
+                <span class="skill-name">SQL / PostgreSQL / Database Management</span>
+                <span class="skill-pct">88%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" style="--target-width: 88%;"></div>
+              </div>
+            </div>
+
+            <!-- Skill 6 -->
+            <div class="skill-row">
+              <div class="skill-labels">
+                <span class="skill-name">Network Security &amp; Linux (Kali)</span>
+                <span class="skill-pct">85%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" style="--target-width: 85%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================== ACADEMIC & LEADERSHIP SECTION ==================== -->
+    <section id="education" class="section-container academic-section">
+      <div class="grid-2col">
+
+        <div class="glass-card mac-glass-window">
+          <div class="mac-window-topbar">
+            <div class="mac-traffic-lights">
+              <span class="traffic-dot dot-close"></span>
+              <span class="traffic-dot dot-minimize"></span>
+              <span class="traffic-dot dot-expand"></span>
+            </div>
+          </div>
+          <div class="card-header">
+            <div class="header-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 10 12 5 2 10l10 5 10-5Z"></path>
+                <path d="M6 12v5c3 2 9 2 12 0v-5"></path>
+                <path d="M22 10v6"></path>
+              </svg>
+            </div>
+            <h2 class="card-title">Academic Background</h2>
+          </div>
+          <div class="academic-entry">
+            <span class="academic-period">Current programme</span>
+            <h3 class="academic-degree">Bachelor of Science in Software Engineering (SWE)</h3>
+            <p class="academic-institution">Daffodil International University</p>
+            <span class="academic-detail">Expected completion: 31 December 2028</span>
+            <span class="academic-detail">Batch 44</span>
+          </div>
+          <div class="academic-entry">
+            <span class="academic-period">Current programme</span>
+            <h3 class="academic-degree">Fazil</h3>
+            <p class="academic-institution">Kamal Khan Hat Fazil Madrasah</p>
+            <span class="academic-detail">Currently pursuing alongside university studies</span>
+          </div>
+          <div class="academic-entry">
+            <span class="academic-period">HSC / Alim · 2024</span>
+            <h3 class="academic-degree">Higher Secondary Certificate (Alim)</h3>
+            <p class="academic-institution">Kamal Khan Hat Fazil Madrasah</p>
+            <span class="academic-detail">GPA: 4.81</span>
+          </div>
+          <div class="academic-entry">
+            <span class="academic-period">SSC / Dakhil · 2022</span>
+            <h3 class="academic-degree">Secondary School Certificate (Dakhil)</h3>
+            <p class="academic-institution">Pakulla Dakhil Madrasah</p>
+            <span class="academic-detail">GPA: 4.56</span>
+          </div>
+        </div>
+
+        <div class="glass-card mac-glass-window">
+          <div class="mac-window-topbar">
+            <div class="mac-traffic-lights">
+              <span class="traffic-dot dot-close"></span>
+              <span class="traffic-dot dot-minimize"></span>
+              <span class="traffic-dot dot-expand"></span>
+            </div>
+          </div>
+          <div class="card-header">
+            <div class="header-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M5 21a7 7 0 0 1 14 0"></path>
+                <path d="M19 8h3M20.5 6.5v3"></path>
+              </svg>
+            </div>
+            <h2 class="card-title">Roles &amp; Responsibilities</h2>
+          </div>
+          <div class="academic-entry">
+            <span class="academic-period">Class Representative</span>
+            <h3 class="academic-degree">Sections 44-G</h3>
+            <ul class="responsibility-list">
+              <li>Coordinate academic schedules and class updates.</li>
+              <li>Facilitate communication between students and faculty.</li>
+              <li>Support students with notices and shared academic information.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="glass-card mac-glass-window academic-wide-card">
+          <div class="mac-window-topbar">
+            <div class="mac-traffic-lights">
+              <span class="traffic-dot dot-close"></span>
+              <span class="traffic-dot dot-minimize"></span>
+              <span class="traffic-dot dot-expand"></span>
+            </div>
+          </div>
+          <div class="card-header">
+            <div class="header-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="8" r="6"></circle>
+                <path d="m8.5 13.5-1 8 4.5-2 4.5 2-1-8"></path>
+              </svg>
+            </div>
+            <h2 class="card-title">Certifications &amp; Achievements</h2>
+          </div>
+          <div class="achievement-list">
+            <div class="achievement-item mac-glass-sub certificate-card" role="button" tabindex="0"
+              data-certificate-src="/assets/certificate/Sadman Habij Saim_354.pdf"
+              data-certificate-title="Certificate of Appreciation (Volunteer)"
+              aria-label="View Certificate of Appreciation (Volunteer)">
+              <span class="achievement-mark">01</span>
+              <div>
+                <h3>Certificate of Appreciation (Volunteer)</h3>
+                <div class="certificate-details">
+                  <p><strong>Event:</strong> Day Long Seminar on Career Planning Roadmap</p>
+                  <p><strong>Contribution:</strong> Valuable support and dedication as a volunteer ensuring smooth organization.</p>
+                  <p><strong>Date:</strong> April 16, 2026</p>
+                  <p><strong>Organization:</strong> Dept. of Software Engineering (SWE), Daffodil International University (DIU)</p>
+                </div>
+              </div>
+            </div>
+            <div class="achievement-item mac-glass-sub certificate-card" role="button" tabindex="0"
+              data-certificate-src="/assets/certificate/Sadman Habij Saim_354_s-g.pdf"
+              data-certificate-title="Certificate of Achievement (Active Participation)"
+              aria-label="View Certificate of Achievement (Active Participation)">
+              <span class="achievement-mark">02</span>
+              <div>
+                <h3>Certificate of Achievement (Active Participation)</h3>
+                <div class="certificate-details">
+                  <p><strong>Event:</strong> Day Long Seminar on Career Planning Roadmap</p>
+                  <p><strong>Engagement:</strong> Active participation contributing to the success of the seminar.</p>
+                  <p><strong>Date:</strong> April 16, 2026</p>
+                  <p><strong>Organization:</strong> Dept. of Software Engineering (SWE), Daffodil International University (DIU)</p>
+                </div>
+              </div>
+            </div>
+            <div class="achievement-item mac-glass-sub certificate-card" role="button" tabindex="0"
+              data-certificate-src="/assets/certificate/Computer-A.pdf"
+              data-certificate-title="CS301: Computer Architecture"
+              aria-label="View CS301: Computer Architecture certificate">
+              <span class="achievement-mark">03</span>
+              <div>
+                <h3>CS301: Computer Architecture</h3>
+                <div class="certificate-details">
+                  <p><strong>Course:</strong> CS301: Computer Architecture</p>
+                  <p><strong>Organization:</strong> Saylor University</p>
+                  <p><strong>Issue Date:</strong> March 24, 2026</p>
+                </div>
+              </div>
+            </div>
+            <div class="achievement-item mac-glass-sub certificate-card" role="button" tabindex="0"
+              data-certificate-src="/assets/certificate/intellipaat.pdf"
+              data-certificate-title="Free SQL Certification Course"
+              aria-label="View Free SQL Certification Course certificate">
+              <span class="achievement-mark">04</span>
+              <div>
+                <h3>Free SQL Certification Course</h3>
+                <div class="certificate-details">
+                  <p><strong>Course:</strong> Free SQL Certification Course</p>
+                  <p><strong>Organization:</strong> Intellipaat Academy</p>
+                  <p><strong>Issue Date:</strong> March 29, 2026</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SELECTED WORK SECTION ==================== -->
+    <section id="projects" class="section-container">
+      <div class="section-heading-bar">
+        <div class="heading-left">
+          <div class="header-icon-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </div>
+          <h2 class="section-main-title">Selected Work</h2>
+        </div>
+        <a href="https://github.com/sadmanhabijsaim" target="_blank" rel="noreferrer" class="view-all-link">
+          <span>View All Projects</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- 3-Column Project Grid with macOS Application Windows -->
+      <div class="projects-grid">
+
+        <!-- Project 1: MealMasterPro -->
+        <div class="project-card glass-card mac-glass-window">
+          <div class="mac-window-topbar">
+            <div class="mac-traffic-lights">
+              <span class="traffic-dot dot-close"></span>
+              <span class="traffic-dot dot-minimize"></span>
+              <span class="traffic-dot dot-expand"></span>
+            </div>
+          </div>
+
+          <a href="https://mealhishab.netlify.app/" target="_blank" rel="noreferrer" class="project-preview-wrap"
+            aria-label="Visit MealMasterPro live website">
+            <img src="assets/mealmasterpro.jpg" alt="MealMasterPro Preview" class="project-img" loading="lazy" decoding="async">
+            <span class="project-badge badge-fullstack"><span class="badge-live-pulse"></span>Live • Netlify</span>
+          </a>
+          <div class="project-body">
+            <h3 class="project-title">
+              <a href="https://mealhishab.netlify.app/" target="_blank" rel="noreferrer"
+                class="project-title-link">MealMasterPro</a>
+            </h3>
+            <p class="project-desc">
+              A personal food-tracking web application deployed on Netlify with a PostgreSQL database.
+            </p>
+            <div class="project-footer">
+              <div class="tech-tags">
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Netlify</span>
+                <span class="tech-tag">Tailwind CSS</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/sadmanhabijsaim" target="_blank" rel="noreferrer"
+                  class="project-action-btn mac-action-btn" aria-label="View MealMasterPro on GitHub"
+                  title="View GitHub Repository">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </a>
+                <a href="https://mealhishab.netlify.app/" target="_blank" rel="noreferrer"
+                  class="project-action-btn mac-action-btn live-demo-btn" aria-label="Visit MealMasterPro Live Website"
+                  title="Live Preview: mealhishab.netlify.app">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Job Application Tracker -->
+        <div class="project-card glass-card mac-glass-window">
+          <div class="mac-window-topbar">
+            <div class="mac-traffic-lights">
+              <span class="traffic-dot dot-close"></span>
+              <span class="traffic-dot dot-minimize"></span>
+              <span class="traffic-dot dot-expand"></span>
+            </div>
+          </div>
+
+          <div class="project-preview-wrap">
+            <img src="assets/jobtracker.jpg" alt="Job Application Tracker Preview" class="project-img" loading="lazy" decoding="async">
+            <span class="project-badge badge-fullstack">Full Stack • GitHub</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Job Application Tracker</h3>
+            <p class="project-desc">
+              A full-stack web application built for tracking job applications with DOM manipulation and event tracking
+              features.
+            </p>
+            <div class="project-footer">
+              <div class="tech-tags">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">DOM Events</span>
+                <span class="tech-tag">Full Stack</span>
+                <span class="tech-tag">GitHub</span>
+              </div>
+              <a href="https://github.com/sadmanhabijsaim" target="_blank" rel="noreferrer"
+                class="project-action-btn mac-action-btn" aria-label="View Job Tracker on GitHub">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Jam AI Assistant -->
+        <div class="project-card glass-card mac-glass-window">
+          <div class="mac-window-topbar">
+            <div class="mac-traffic-lights">
+              <span class="traffic-dot dot-close"></span>
+              <span class="traffic-dot dot-minimize"></span>
+              <span class="traffic-dot dot-expand"></span>
+            </div>
+          </div>
+
+          <div class="project-preview-wrap">
+            <img src="assets/jam_ai.jpg" alt="Jam AI Assistant Preview" class="project-img" loading="lazy" decoding="async">
+            <span class="project-badge badge-webapp">AI • Python</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Jam AI Assistant</h3>
+            <p class="project-desc">
+              A custom Python-based conversational AI assistant configured with voice and speech recognition
+              capabilities.
+            </p>
+            <div class="project-footer">
+              <div class="tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Speech Recognition</span>
+                <span class="tech-tag">Voice AI</span>
+                <span class="tech-tag">NLP</span>
+              </div>
+              <a href="https://github.com/sadmanhabijsaim" target="_blank" rel="noreferrer"
+                class="project-action-btn mac-action-btn" aria-label="View Jam AI on GitHub">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== MY WORK PROCESS ==================== -->
+    <section id="process" class="section-container">
+      <div class="glass-card process-card mac-glass-window">
+        <div class="mac-window-topbar">
+          <div class="mac-traffic-lights">
+            <span class="traffic-dot dot-close"></span>
+            <span class="traffic-dot dot-minimize"></span>
+            <span class="traffic-dot dot-expand"></span>
+          </div>
+        </div>
+
+        <div class="card-header">
+          <div class="header-icon-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <h2 class="card-title">My Work Process</h2>
+        </div>
+
+        <!-- 6-Step Connected Timeline with Refractive Glass Nodes -->
+        <div class="process-timeline-wrap">
+          <div class="process-track-line"></div>
+
+          <div class="process-steps-row">
+            <!-- Step 01 -->
+            <div class="process-step">
+              <div class="step-node">
+                <div class="step-icon-circle mac-glass-sub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="step-meta">
+                <span class="step-num">01</span>
+                <span class="step-title">Discover</span>
+              </div>
+              <p class="step-desc">Understanding goals, requirements, and project scope.</p>
+            </div>
+
+            <!-- Step 02 -->
+            <div class="process-step">
+              <div class="step-node">
+                <div class="step-icon-circle mac-glass-sub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="step-meta">
+                <span class="step-num">02</span>
+                <span class="step-title">Plan</span>
+              </div>
+              <p class="step-desc">Planning architecture, database schemas, tech stack, and project roadmap.</p>
+            </div>
+
+            <!-- Step 03 -->
+            <div class="process-step">
+              <div class="step-node">
+                <div class="step-icon-circle mac-glass-sub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                    <path d="M2 2l7.586 7.586"></path>
+                    <circle cx="11" cy="11" r="2"></circle>
+                  </svg>
+                </div>
+              </div>
+              <div class="step-meta">
+                <span class="step-num">03</span>
+                <span class="step-title">Design</span>
+              </div>
+              <p class="step-desc">Creating wireframes and beautiful UI/UX designs using Adobe Photoshop/Illustrator
+                and Tailwind CSS.</p>
+            </div>
+
+            <!-- Step 04 -->
+            <div class="process-step">
+              <div class="step-node">
+                <div class="step-icon-circle mac-glass-sub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="step-meta">
+                <span class="step-num">04</span>
+                <span class="step-title">Develop</span>
+              </div>
+              <p class="step-desc">Writing clean, scalable, and efficient code with best practices (Full-stack web
+                solutions).</p>
+            </div>
+
+            <!-- Step 05 -->
+            <div class="process-step">
+              <div class="step-node">
+                <div class="step-icon-circle mac-glass-sub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <polyline points="9 12 11 14 15 10"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="step-meta">
+                <span class="step-num">05</span>
+                <span class="step-title">Test</span>
+              </div>
+              <p class="step-desc">Testing for bugs, performance, security auditing, and cross-browser issues.</p>
+            </div>
+
+            <!-- Step 06 -->
+            <div class="process-step">
+              <div class="step-node">
+                <div class="step-icon-circle mac-glass-sub">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z">
+                    </path>
+                    <path
+                      d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z">
+                    </path>
+                  </svg>
+                </div>
+              </div>
+              <div class="step-meta">
+                <span class="step-num">06</span>
+                <span class="step-title">Deploy</span>
+              </div>
+              <p class="step-desc">Deploying to production (Vercel/GitHub) and ensuring smooth launch.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT / FOOTER SECTION ==================== -->
+    <section id="contact" class="section-container">
+      <div class="glass-card contact-card mac-glass-window">
+        <div class="mac-window-topbar">
+          <div class="mac-traffic-lights">
+            <span class="traffic-dot dot-close"></span>
+            <span class="traffic-dot dot-minimize"></span>
+            <span class="traffic-dot dot-expand"></span>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+
+          <!-- Left Info Column -->
+          <div class="contact-info-col">
+            <div class="card-header">
+              <div class="header-icon-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </div>
+              <h2 class="card-title">Let's Build Something Great</h2>
+            </div>
+
+            <p class="contact-desc">
+              Have a project in mind or want to collaborate? I'd love to hear from you.
+            </p>
+
+            <div class="contact-channels">
+              <div class="channel-item mac-glass-sub">
+                <div class="channel-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
+                <div class="channel-details">
+                  <span class="channel-label">Email</span>
+                  <a href="mailto:sadmansiam260@gmail.com" class="channel-value">sadmansiam260@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="channel-item mac-glass-sub">
+                <div class="channel-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                  </svg>
+                </div>
+                <div class="channel-details">
+                  <span class="channel-label">Phone</span>
+                  <a href="tel:01988597644" class="channel-value">+880 1988-597644</a>
+                </div>
+              </div>
+
+              <div class="channel-item mac-glass-sub">
+                <div class="channel-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="channel-details">
+                  <span class="channel-label">Location</span>
+                  <span class="channel-value">Polashtola, Jamalpur Sadar, Jamalpur</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ambient Glow Accent -->
+            <div class="cyber-accent-graphic"></div>
+          </div>
+
+          <!-- Right Interactive Form Column with Refractive Glass Controls -->
+          <div class="contact-form-col">
+            <form id="contact-form" class="contact-form" name="contact" method="POST"
+              action="mailto:sadmansiam260@gmail.com" enctype="text/plain">
+              <div class="contact-honeypot" aria-hidden="true">
+                <label for="contact-company">Leave this field empty</label>
+                <input type="text" id="contact-company" name="company" tabindex="-1" autocomplete="off">
+              </div>
+              <div class="form-row-2col">
+                <div class="input-group">
+                  <input type="text" id="contact-name" class="form-control mac-glass-input" placeholder="Your Name"
+                    name="name" required>
+                </div>
+                <div class="input-group">
+                  <input type="email" id="contact-email" class="form-control mac-glass-input" placeholder="Your Email"
+                    name="email" required>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <input type="text" id="contact-subject" class="form-control mac-glass-input" placeholder="Subject"
+                  name="subject" required>
+              </div>
+
+              <div class="input-group">
+                <textarea id="contact-message" class="form-control mac-glass-input" rows="5" placeholder="Your Message"
+                  name="message" required></textarea>
+              </div>
+
+              <button type="submit" id="btn-submit-message" class="btn btn-mac-primary btn-submit">
+                <span>Send Message</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+
+              <div id="form-feedback" class="form-feedback" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer-enhanced">
+      <div class="footer-top">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="Sadman Habij Saim Logo" class="brand-logo-img">
+          <div>
+            <div class="footer-brand-text">Sadman Habij Saim</div>
+            <div class="footer-brand-sub">Full-Stack Developer • DIU</div>
+          </div>
+        </div>
+
+        <!-- Quick Navigation -->
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#home" class="footer-nav-link">Home</a>
+          <a href="#about" class="footer-nav-link">About</a>
+          <a href="#skills" class="footer-nav-link">Skills</a>
+          <a href="#projects" class="footer-nav-link">Projects</a>
+          <a href="#contact" class="footer-nav-link">Contact</a>
+        </nav>
+
+        <!-- Social Icons -->
+        <div class="footer-social">
+          <a href="https://github.com/sadmanhabijsaim" target="_blank" rel="noreferrer" class="footer-social-btn"
+            aria-label="GitHub">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/sadman-habij-saimsiam/" target="_blank" rel="noreferrer"
+            class="footer-social-btn" aria-label="LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+          </a>
+          <a href="https://x.com/sadmanhabijsaim" target="_blank" rel="noreferrer" class="footer-social-btn"
+            aria-label="Twitter / X">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+          <a href="mailto:sadmansiam260@gmail.com" class="footer-social-btn" aria-label="Email">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Sadman Habij Saim. All rights reserved.</span>
+        <button class="back-to-top-btn" id="btn-back-to-top" aria-label="Back to top">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+          Back to top
+        </button>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Certificate lightbox -->
+  <div class="certificate-lightbox" id="certificate-lightbox" role="dialog" aria-modal="true"
+    aria-labelledby="certificate-lightbox-title" hidden>
+    <div class="certificate-lightbox-backdrop" data-lightbox-close></div>
+    <div class="certificate-lightbox-panel" role="document">
+      <button class="certificate-lightbox-close" type="button" aria-label="Close certificate preview"
+        data-lightbox-close>&times;</button>
+      <h2 id="certificate-lightbox-title" class="sr-only">Certificate preview</h2>
+      <iframe id="certificate-lightbox-document" class="certificate-lightbox-document"
+        title="Certificate preview" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- Toki portfolio assistant -->
+  <aside class="toki-chat" aria-label="Toki portfolio assistant">
+    <section class="toki-panel" id="toki-panel" role="dialog" aria-labelledby="toki-title" aria-describedby="toki-note" hidden>
+      <header class="toki-header">
+        <div class="toki-traffic-lights" role="group" aria-label="Chat window controls">
+          <button class="toki-close" type="button" aria-label="Close Toki chat" title="Close"></button>
+          <button class="toki-window-dot toki-window-dot-minimize toki-minimize" type="button" aria-label="Minimize Toki chat" aria-expanded="true" title="Minimize"></button>
+          <button class="toki-window-dot toki-window-dot-expand toki-expand" type="button" aria-label="Expand Toki chat" aria-pressed="false" title="Expand"></button>
+        </div>
+        <img class="toki-avatar" src="/assets/Toki.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="toki-heading"><strong id="toki-title">Toki</strong><span>Sadman’s portfolio assistant</span></div>
+      </header>
+      <div class="toki-messages" id="toki-messages" aria-live="polite" aria-relevant="additions">
+        <p class="toki-bubble toki-bot">Hi! Ask me about Sadman’s profile, skills, projects, education, certificates, CV, or contact. English or বাংলা — কী জানতে চান?</p>
+        <div class="toki-faq-options" role="group" aria-label="Frequently asked portfolio topics">
+          <button class="toki-faq-option" type="button" data-toki-faq="Skills">Skills</button>
+          <button class="toki-faq-option" type="button" data-toki-faq="Projects">Projects</button>
+          <button class="toki-faq-option" type="button" data-toki-faq="Certificates">Certificates</button>
+          <button class="toki-faq-option" type="button" data-toki-faq="CV">CV</button>
+          <button class="toki-faq-option" type="button" data-toki-faq="Contact">Contact</button>
+        </div>
+      </div>
+      <form class="toki-form" id="toki-form">
+        <label class="sr-only" for="toki-input">Ask Toki about this portfolio</label>
+        <input id="toki-input" name="message" maxlength="1000" placeholder="Ask about this portfolio…" autocomplete="off" required>
+        <button type="submit" aria-label="Send message">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7ZM22 2 11 13"/></svg>
+        </button>
+      </form>
+      <p class="toki-note" id="toki-note">Toki answers questions about Sadman and this portfolio.</p>
+    </section>
+    <button class="toki-launcher" type="button" aria-expanded="false" aria-controls="toki-panel" aria-label="Open Toki chat">
+      <img class="toki-launcher-avatar" src="/assets/Toki.png" alt="" aria-hidden="true" decoding="async">
+      <span>Chat with Toki</span>
+    </button>
+  </aside>
+
+  <script type="module" src="app.js"></script>
+</body>
+
+</html>

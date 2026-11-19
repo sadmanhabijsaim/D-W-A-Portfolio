@@ -1,0 +1,12 @@
+{
+  "source_fps": 24.0,
+  "target_fps": 24.0,
+  "resolution": [
+    1280,
+    720
+  ],
+  "source_frames": 240,
+  "duration_seconds": 10.0,
+  "extracted_frames": 240,
+  "format": "PNG (lossless)"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "animated-portfolio-website",
+  "version": "1.0.0",
+  "description": "Sadman Habij Saim - Interactive Portfolio with Scroll Canvas Animation",
+  "scripts": {
+    "dev": "node ./node_modules/vite/bin/vite.js --host 0.0.0.0",
+    "build": "node ./node_modules/vite/bin/vite.js build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --test tests/toki-api.test.js"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}
