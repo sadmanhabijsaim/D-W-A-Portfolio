@@ -39,7 +39,7 @@ function createConfig() {
   ]));
 
   return {
-    banglaPattern: '\\b(?:baba|babar|ma|maa|bon|biye|poribar)\\b',
+    banglaPattern: '\\b(?:baba|babar|ma|maa|bon|biye|ki|poribar)\\b',
     answers
   };
 }
@@ -155,10 +155,12 @@ test('answers relationship-status questions with the configured relationship FAQ
   const single = invokeHandler({ body: { query: 'sadman singel' } });
   const married = invokeHandler({ body: { query: 'sadman single' } });
   const bangla = invokeHandler({ body: { query: 'sadman er biye hoiche?' } });
+  const romanizedQuestion = invokeHandler({ body: { query: 'sadman ki single' } });
 
   assert.equal(single.payload.reply, 'TEST-EN-relationshipStatus');
   assert.equal(married.payload.reply, 'TEST-EN-relationshipStatus');
   assert.equal(bangla.payload.reply, 'TEST-BN-relationshipStatus');
+  assert.equal(romanizedQuestion.payload.reply, 'TEST-BN-relationshipStatus');
 });
 
 test('reports missing FAQ configuration and invalid requests explicitly', () => {
