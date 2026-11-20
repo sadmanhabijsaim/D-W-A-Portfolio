@@ -55,11 +55,251 @@
     const processSection = document.getElementById('process');
     const processLine = document.querySelector('.process-track-line');
     const backgroundLayer = document.getElementById('canvas-container');
-     if (!processSection && !backgroundLayer) return;
+    const worldCanvas = document.getElementById('network-world-canvas');
+    const worldContext = worldCanvas?.getContext('2d');
+    if (!processSection && !backgroundLayer) return;
 
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     let animationFrame = null;
     let scrollListenersAttached = false;
+
+    function renderNetworkWorld(progress) {
+      if (!worldCanvas || !worldContext) return;
+
+      const bounds = worldCanvas.getBoundingClientRect();
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      const pixelWidth = Math.round(bounds.width * pixelRatio);
+      const pixelHeight = Math.round(bounds.height * pixelRatio);
+      if (!pixelWidth || !pixelHeight) return;
+      if (worldCanvas.width !== pixelWidth || worldCanvas.height !== pixelHeight) {
+        worldCanvas.width = pixelWidth;
+        worldCanvas.height = pixelHeight;
+      }
+
+      worldContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      worldContext.clearRect(0, 0, bounds.width, bounds.height);
+
+      const centerX = bounds.width / 2;
+      const centerY = bounds.height / 2;
+      const radius = Math.min(bounds.width, bounds.height) * 0.24;
+      const rotateY = progress * Math.PI * 3.4;
+      const rotateX = progress * Math.PI * 1.25;
+      const sinY = Math.sin(rotateY);
+      const cosY = Math.cos(rotateY);
+      const sinX = Math.sin(rotateX);
+      const cosX = Math.cos(rotateX);
+
+      function project(point, scale = 1, includeBack = false) {
+        const x = (point.x * cosY + point.z * sinY) * scale;
+        const depthY = (-point.x * sinY + point.z * cosY) * scale;
+        const y = point.y * scale * cosX - depthY * sinX;
+        const depth = (point.y * sinX + depthY * cosX) * scale;
+        if (!includeBack && depth <= 0) return null;
+
+        const perspective = 2.5 / (2.5 - depth * 0.45);
+        return {
+          x: centerX + x * radius * perspective,
+          y: centerY - y * radius * perspective,
+          depth
+        };
+      }
+
+      function toPoint(latitude, longitude) {
+        const lat = latitude * Math.PI / 180;
+        const lon = longitude * Math.PI / 180;
+        return {
+          x: Math.cos(lat) * Math.sin(lon),
+          y: Math.sin(lat),
+          z: Math.cos(lat) * Math.cos(lon)
+        };
+      }
+
+      function drawSurfaceLine(start, end, opacity, width) {
+        const first = project(start);
+        const last = project(end);
+        if (!first || !last) return;
+
+        const depthOpacity = opacity * (0.3 + ((first.depth + last.depth) / 2) * 0.7);
+        worldContext.beginPath();
+        worldContext.moveTo(first.x, first.y);
+        worldContext.lineTo(last.x, last.y);
+        worldContext.strokeStyle = `rgba(98, 199, 255, ${depthOpacity})`;
+        worldContext.lineWidth = width;
+        worldContext.stroke();
+      }
+
+      function drawWaveLine(start, end, opacity, width) {
+        worldContext.beginPath();
+        worldContext.moveTo(start.x, start.y);
+        worldContext.lineTo(end.x, end.y);
+        worldContext.strokeStyle = `rgba(98, 199, 255, ${opacity})`;
+        worldContext.lineWidth = width;
+        worldContext.stroke();
+      }
+
+      const cornerAngles = [
+        Math.atan2(-centerY, -centerX),
+        Math.atan2(-centerY, centerX),
+        Math.atan2(centerY, centerX),
+        Math.atan2(centerY, -centerX)
+      ];
+      const rayAngles = [
+        ...Array.from({ length: 32 }, (_, index) => (index / 32) * Math.PI * 2),
+        ...cornerAngles.map((angle) => (angle + Math.PI * 2) % (Math.PI * 2))
+      ].sort((first, last) => first - last).filter((angle, index, angles) =>
+        index === 0 || angle - angles[index - 1] > 0.001
+      );
+      const waveSegments = 12;
+      const startDistance = radius * 1.08;
+      const networkRays = rayAngles.map((angle) => {
+        const horizontalReach = Math.abs(Math.cos(angle)) > 0.001
+          ? centerX / Math.abs(Math.cos(angle))
+          : Infinity;
+        const verticalReach = Math.abs(Math.sin(angle)) > 0.001
+          ? centerY / Math.abs(Math.sin(angle))
+          : Infinity;
+        const endDistance = Math.min(horizontalReach, verticalReach);
+
+        return Array.from({ length: waveSegments + 1 }, (_, segment) => {
+          const progressAlongRay = segment / waveSegments;
+          const distance = startDistance + (endDistance - startDistance) * progressAlongRay;
+          const waveOffset = Math.sin(
+            distance / (radius * 0.75) - progress * Math.PI * 3 + angle * 2.5
+          ) * radius * 0.07 * progressAlongRay;
+          return {
+            x: centerX + Math.cos(angle) * distance - Math.sin(angle) * waveOffset,
+            y: centerY + Math.sin(angle) * distance + Math.cos(angle) * waveOffset,
+            progressAlongRay
+          };
+        });
+      });
+
+      networkRays.forEach((ray, rayIndex) => {
+        const nextRay = networkRays[(rayIndex + 1) % networkRays.length];
+        ray.forEach((point, segment) => {
+          const fade = 1 - point.progressAlongRay * 0.48;
+          if (segment % 2 === 0 || segment === waveSegments) {
+            worldContext.beginPath();
+            worldContext.arc(point.x, point.y, 0.9 + fade * 0.55, 0, Math.PI * 2);
+            worldContext.fillStyle = `rgba(139, 228, 255, ${fade * 0.34})`;
+            worldContext.fill();
+          }
+
+          if (segment < waveSegments) {
+            drawWaveLine(point, ray[segment + 1], fade * 0.32, 0.8);
+            if (rayIndex % 2 === 0) {
+              drawWaveLine(point, nextRay[segment], fade * 0.18, 0.7);
+            }
+            if ((rayIndex + segment) % 2 === 0) {
+              drawWaveLine(point, nextRay[segment + 1], fade * 0.13, 0.65);
+            }
+          }
+        });
+
+        const pulseProgress = (progress * 1.7 + (rayIndex % 8) / 8) % 1;
+        const pulseSegment = pulseProgress * waveSegments;
+        const pulseIndex = Math.min(Math.floor(pulseSegment), waveSegments - 1);
+        const pulseBlend = pulseSegment - pulseIndex;
+        const pulseStart = ray[pulseIndex];
+        const pulseEnd = ray[pulseIndex + 1];
+        const pulseX = pulseStart.x + (pulseEnd.x - pulseStart.x) * pulseBlend;
+        const pulseY = pulseStart.y + (pulseEnd.y - pulseStart.y) * pulseBlend;
+        worldContext.shadowColor = 'rgba(139, 228, 255, 0.9)';
+        worldContext.shadowBlur = 7;
+        worldContext.beginPath();
+        worldContext.arc(pulseX, pulseY, 2.2, 0, Math.PI * 2);
+        worldContext.fillStyle = 'rgba(187, 240, 255, 0.9)';
+        worldContext.fill();
+        worldContext.shadowBlur = 0;
+      });
+
+      const spherePath = new Path2D();
+      spherePath.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      const sphereFill = worldContext.createRadialGradient(
+        centerX - radius * 0.38, centerY - radius * 0.42, radius * 0.04,
+        centerX, centerY, radius * 1.12
+      );
+      sphereFill.addColorStop(0, 'rgba(74, 194, 255, 0.18)');
+      sphereFill.addColorStop(0.58, 'rgba(34, 111, 178, 0.1)');
+      sphereFill.addColorStop(1, 'rgba(4, 14, 34, 0.3)');
+      worldContext.fillStyle = sphereFill;
+      worldContext.fill(spherePath);
+
+      worldContext.save();
+      worldContext.clip(spherePath);
+
+      for (let latitude = -60; latitude <= 60; latitude += 30) {
+        for (let longitude = -180; longitude < 180; longitude += 3) {
+          drawSurfaceLine(
+            toPoint(latitude, longitude),
+            toPoint(latitude, longitude + 3),
+            0.24,
+            0.7
+          );
+        }
+      }
+
+      for (let longitude = -180; longitude < 180; longitude += 30) {
+        for (let latitude = -90; latitude < 90; latitude += 3) {
+          drawSurfaceLine(
+            toPoint(latitude, longitude),
+            toPoint(latitude + 3, longitude),
+            0.24,
+            0.7
+          );
+        }
+      }
+
+      const latitudes = [-72, -54, -36, -18, 0, 18, 36, 54, 72];
+      const longitudes = Array.from({ length: 18 }, (_, index) => index * 20);
+      const network = latitudes.map((latitude) =>
+        longitudes.map((longitude) => toPoint(latitude, longitude))
+      );
+
+      network.forEach((row, rowIndex) => {
+        row.forEach((point, columnIndex) => {
+          drawSurfaceLine(point, row[(columnIndex + 1) % row.length], 0.62, 1);
+          if (rowIndex < network.length - 1) {
+            drawSurfaceLine(point, network[rowIndex + 1][columnIndex], 0.62, 1);
+            if (columnIndex % 2 === 0) {
+              drawSurfaceLine(
+                point,
+                network[rowIndex + 1][(columnIndex + 1) % row.length],
+                0.42,
+                0.85
+              );
+            }
+          }
+        });
+      });
+
+      network.flat().forEach((point) => {
+        const projected = project(point);
+        if (!projected) return;
+
+        worldContext.beginPath();
+        worldContext.arc(projected.x, projected.y, 1.2 + projected.depth * 0.9, 0, Math.PI * 2);
+        worldContext.fillStyle = `rgba(139, 228, 255, ${0.42 + projected.depth * 0.46})`;
+        worldContext.fill();
+      });
+
+      const shade = worldContext.createRadialGradient(
+        centerX - radius * 0.28, centerY - radius * 0.34, radius * 0.18,
+        centerX, centerY, radius * 1.08
+      );
+      shade.addColorStop(0, 'rgba(1, 8, 24, 0)');
+      shade.addColorStop(0.72, 'rgba(1, 8, 24, 0.04)');
+      shade.addColorStop(1, 'rgba(1, 8, 24, 0.4)');
+      worldContext.fillStyle = shade;
+      worldContext.fill(spherePath);
+      worldContext.restore();
+
+      worldContext.beginPath();
+      worldContext.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      worldContext.strokeStyle = 'rgba(125, 214, 255, 0.56)';
+      worldContext.lineWidth = 1;
+      worldContext.stroke();
+    }
 
     function renderFinalState() {
       processLine?.style.setProperty('--pipeline-fill', '1');
@@ -68,6 +308,7 @@
       backgroundLayer?.style.setProperty('--scroll-rotate-x', '52deg');
       backgroundLayer?.style.setProperty('--scroll-rotate-y', '0deg');
       backgroundLayer?.style.setProperty('--scroll-scale', '1');
+      renderNetworkWorld(0);
     }
 
     function getSectionProgress(section) {
@@ -90,6 +331,7 @@
         const scrollRange = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
         const pageProgress = Math.min(Math.max(window.scrollY / scrollRange, 0), 1);
         const centeredProgress = pageProgress * 2 - 1;
+        renderNetworkWorld(pageProgress);
         backgroundLayer.style.setProperty('--scroll-parallax-y', `${(-pageProgress * 64).toFixed(2)}px`);
         backgroundLayer.style.setProperty('--scroll-parallax-x', `${(centeredProgress * 18).toFixed(2)}px`);
         backgroundLayer.style.setProperty('--scroll-rotate-x', `${(52 + pageProgress * 14).toFixed(2)}deg`);

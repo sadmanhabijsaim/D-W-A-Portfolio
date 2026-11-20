@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-The Vite server runs the portfolio UI. To test the family FAQ API locally, create `.env.local` from `.env.example`, fill its values, then run `npx vercel dev`.
+Vite runs both the portfolio and the local `/api/toki` endpoint. Create `.env.local` from `.env.example`, fill `TOKI_FAQ_RESPONSES` with the private response configuration, then run `npm run dev` or `npm run preview`. Both commands load the ignored local value without exposing it in the browser bundle.
 
 ## Build and preview
 
@@ -24,7 +24,9 @@ The production build is written to `dist/`.
 
 FAQ answer content is not embedded in `app.js`, the browser bundle, or the GitHub source. The `/api/toki` Vercel Function matches questions and reads answer content from the server-only `TOKI_FAQ_RESPONSES` environment variable.
 
-For local development, create `.env.local` from `.env.example` and add the private response configuration. `.env.local` is ignored by Git. Run `npx vercel dev` to use the API locally; `npm run dev` starts Vite only. In Vercel, import the `.env.local` variable under **Project Settings → Environment Variables** for Production and Preview, mark it as Secret, then redeploy. Do not use a `VITE_` prefix.
+For local development, create `.env.local` from `.env.example` and add the private response configuration. `.env.local` is ignored by Git. In Vercel, add the `.env.local` variable under **Project Settings → Environment Variables** for Production and Preview, mark it as Secret, then redeploy. Do not use a `VITE_` prefix.
+
+If the deployed chatbot says it is unavailable, confirm `TOKI_FAQ_RESPONSES` is set for the deployment's environment and redeploy. A missing or invalid value makes `/api/toki` return `503`; the function logs the configuration problem without logging the answer content.
 
 The public chatbot only returns the specific detail asked for. Its endpoint is public, so visitors can still ask it for those answers; keeping them in environment variables hides them from the repository and browser source but does not restrict who can receive them.
 

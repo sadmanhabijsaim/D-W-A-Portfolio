@@ -47,7 +47,10 @@ function isValidResponse(response) {
 
 function loadResponses() {
   const rawResponses = process.env.TOKI_FAQ_RESPONSES;
-  if (!rawResponses) return null;
+  if (!rawResponses) {
+    console.error('Toki FAQ response configuration is missing from the server environment.');
+    return null;
+  }
 
   let config;
   try {
@@ -57,7 +60,16 @@ function loadResponses() {
     return null;
   }
 
-  if (!config || typeof config !== 'object' || typeof config.banglaPattern !== 'string' || !config.answers) {
+  if (
+    !config
+    || typeof config !== 'object'
+    || Array.isArray(config)
+    || typeof config.banglaPattern !== 'string'
+    || !config.answers
+    || typeof config.answers !== 'object'
+    || Array.isArray(config.answers)
+  ) {
+    console.error('Toki FAQ response configuration must include a language pattern and answer map.');
     return null;
   }
 
@@ -68,7 +80,10 @@ function loadResponses() {
     return null;
   }
 
-  if (!requiredResponseIds.every((id) => isValidResponse(config.answers[id]))) return null;
+  if (!requiredResponseIds.every((id) => isValidResponse(config.answers[id]))) {
+    console.error('Toki FAQ response configuration is missing required or valid answers.');
+    return null;
+  }
   return config;
 }
 
