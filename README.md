@@ -23,6 +23,7 @@ The production build is written to `dist/`.
 ## Toki FAQ
 
 FAQ answer content is not embedded in `app.js`, the browser bundle, or the GitHub source. The `/api/toki` Vercel Function matches questions and reads answer content from the server-only `TOKI_FAQ_RESPONSES` environment variable.
+The response configuration must include a `relationshipStatus` answer for questions about whether Sadman is single or married.
 
 For local development, create `.env.local` from `.env.example` and add the private response configuration. `.env.local` is ignored by Git. In Vercel, add the `.env.local` variable under **Project Settings → Environment Variables** for Production and Preview, mark it as Secret, then redeploy. Do not use a `VITE_` prefix.
 

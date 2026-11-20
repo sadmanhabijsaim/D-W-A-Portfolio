@@ -11,6 +11,7 @@ const responseIds = [
   'sisterCount',
   'familyBroad',
   'familyUnknown',
+  'relationshipStatus',
   'notListed',
   'location',
   'experience',
@@ -85,6 +86,24 @@ test('matches family questions server-side and returns only the requested answer
   assert.equal(response.headers['Cache-Control'], 'no-store');
 });
 
+test('answers father, mother, and sister questions with only that relative’s FAQ', () => {
+  const father = invokeHandler({ body: { query: 'sadman er baba' } });
+  const mother = invokeHandler({ body: { query: 'sadman er ma' } });
+  const sister = invokeHandler({ body: { query: 'sadman er bon' } });
+
+  assert.equal(father.payload.reply, 'TEST-BN-fatherWork');
+  assert.equal(mother.payload.reply, 'TEST-BN-motherWork');
+  assert.equal(sister.payload.reply, 'TEST-BN-familySisterMarital');
+});
+
+test('only combines parents when both are mentioned', () => {
+  const fatherOnly = invokeHandler({ body: { query: 'sadman er baba' } });
+  const bothParents = invokeHandler({ body: { query: 'baba ma ki kore?' } });
+
+  assert.equal(fatherOnly.payload.reply, 'TEST-BN-fatherWork');
+  assert.equal(bothParents.payload.reply, 'TEST-BN-parentsWork');
+});
+
 test('detects Bengali questions and returns the Bengali response', () => {
   const response = invokeHandler({
     body: { query: 'বাবার পেশা কী?' }
@@ -123,14 +142,23 @@ test('answers non-family portfolio questions through the same endpoint', () => {
   assert.deepEqual(response.payload.links, ['skills']);
 });
 
-test('does not make up Sadman’s relationship status', () => {
+test('answers marital-status questions with the configured relationship FAQ', () => {
   const response = invokeHandler({
     body: { query: 'Is Sadman married?' }
   });
 
   assert.equal(response.statusCode, 200);
-  assert.equal(response.payload.reply, 'TEST-EN-notListed');
-  assert.doesNotMatch(response.payload.reply, /\bsingle\b/i);
+  assert.equal(response.payload.reply, 'TEST-EN-relationshipStatus');
+});
+
+test('answers relationship-status questions with the configured relationship FAQ', () => {
+  const single = invokeHandler({ body: { query: 'sadman singel' } });
+  const married = invokeHandler({ body: { query: 'sadman single' } });
+  const bangla = invokeHandler({ body: { query: 'sadman er biye hoiche?' } });
+
+  assert.equal(single.payload.reply, 'TEST-EN-relationshipStatus');
+  assert.equal(married.payload.reply, 'TEST-EN-relationshipStatus');
+  assert.equal(bangla.payload.reply, 'TEST-BN-relationshipStatus');
 });
 
 test('reports missing FAQ configuration and invalid requests explicitly', () => {
